@@ -1,0 +1,11 @@
+{
+	"color_scheme": "Packages/Neon Color Scheme/Neon.tmTheme",
+	"dpi_scale": 1.8,
+	"font_face": "Cousine",
+	"font_size": 9,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"theme": "Soda SolarizedDark.sublime-theme"
+}

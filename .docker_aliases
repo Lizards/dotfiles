@@ -1,0 +1,56 @@
+#!/bin/bash
+
+X11_OPTS=(
+    --device /dev/dri
+    -e DISPLAY=unix$DISPLAY
+    -v /tmp/.X11-unix:/tmp/.X11-unix:ro
+)
+
+X11_OPTS_COOKIE=(
+    "${X11_OPTS[@]}"
+    -e XCOOKIE="$(xauth list | grep unix | cut -f2 -d'/' | tr -cd '\11\12\15\40-\176' | sed -e 's/  / /g')"
+)
+
+SOUND_OPTS=(
+#    --device /dev/snd
+#    --group-add $(getent group audio | cut -d: -f3)
+    -e PULSE_SERVER=unix:$XDG_RUNTIME_DIR/pulse/native
+    -v $XDG_RUNTIME_DIR/pulse/native:$XDG_RUNTIME_DIR/pulse/native:ro
+)
+
+DBUS_OPTS=(
+    -v /run/dbus:/run/dbus:ro
+    -v $XDG_RUNTIME_DIR/bus:$XDG_RUNTIME_DIR/bus:ro
+    -e DBUS_SESSION_BUS_ADDRESS
+)
+
+function spotify {
+    echo -e "Launching spotify container" 
+    docker run --rm --detach --name spotify \
+        "${X11_OPTS_COOKIE[@]}" \
+        "${SOUND_OPTS[@]}" \
+        "${DBUS_OPTS[@]}" \
+        -v $HOME/.spotify/config:/home/user/.config/spotify \
+        -v $HOME/.spotify/cache:/home/user/.cache/spotify \
+        lizards/spotify \
+        --force-device-scale-factor=1.5
+}
+
+# function slack {
+
+#     xhost +SI:localuser:amanda
+
+#     docker run --rm --detach --name slack \
+#         -v /etc/localtime:/etc/localtime:ro \
+#         -v /tmp/.X11-unix:/tmp/.X11-unix \
+#         -e "DISPLAY=unix${DISPLAY}" \
+#         --device /dev/snd \
+#         --device /dev/dri \
+#         --device /dev/video0 \
+#         --group-add audio \
+#         --group-add video \
+#         -v "${HOME}/.config/Slack:${HOME}/.config/Slack" \
+#         -v "${HOME}:/workstation:ro" \
+#         --ipc="host" \
+#         amanda/slack
+# }
