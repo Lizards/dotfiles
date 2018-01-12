@@ -24,9 +24,22 @@ DBUS_OPTS=(
     -e DBUS_SESSION_BUS_ADDRESS
 )
 
+function dependencies {
+    for container in "$@"; do
+        local state
+        state=$(docker inspect --format "{{.State.Running}}" "$container" 2>/dev/null)
+
+        if [[ "$state" == "false" ]] || [[ "$state" == "" ]]; then
+            echo "$container is not running, starting it for you."
+            $container
+        fi
+    done
+}
+
 function spotify {
+    local name='spotify'
     echo -e "Launching spotify container" 
-    docker run --rm --detach --name spotify \
+    docker run --rm --detach --name $name \
         "${X11_OPTS_COOKIE[@]}" \
         "${SOUND_OPTS[@]}" \
         "${DBUS_OPTS[@]}" \
@@ -36,21 +49,43 @@ function spotify {
         --force-device-scale-factor=1.5
 }
 
-# function slack {
+function mariadb-server {
+    local name='mariadb-server'
+    if [ "${1}" == "stop" ]; then
+        docker stop $name
+    else
+        echo -e "Launching MariaDB container"
+        docker run --rm --detach --name $name \
+            -v $HOME/work/mariadb-data:/var/lib/mysql \
+            -v $HOME/work/mysql-dumps:/mysql-dumps \
+            -e MYSQL_ROOT_PASSWORD=root \
+            mariadb:10.1.22
+    fi
+}
 
-#     xhost +SI:localuser:amanda
+function mysql-server {
+    local name='mysql-server'
+    if [ "${1}" == "stop" ]; then
+        docker stop $name
+    else
+        echo -e "Launching MySQL container"
+        docker run --rm --detach --name $name \
+            -v $HOME/work/mysql-data:/var/lib/mysql \
+            -v $HOME/work/mysql-dumps:/mysql-dumps \
+            -e MYSQL_ROOT_PASSWORD=root \
+            mysql/mysql-server:5.7.20
+    fi
+}
 
-#     docker run --rm --detach --name slack \
-#         -v /etc/localtime:/etc/localtime:ro \
-#         -v /tmp/.X11-unix:/tmp/.X11-unix \
-#         -e "DISPLAY=unix${DISPLAY}" \
-#         --device /dev/snd \
-#         --device /dev/dri \
-#         --device /dev/video0 \
-#         --group-add audio \
-#         --group-add video \
-#         -v "${HOME}/.config/Slack:${HOME}/.config/Slack" \
-#         -v "${HOME}:/workstation:ro" \
-#         --ipc="host" \
-#         amanda/slack
-# }
+function mysql-workbench {
+    dependencies mysql-server
+    local name='mysql-workbench'
+    echo -e "Launching MySQL workbench"
+    docker run --rm --detach --name $name \
+        "${X11_OPTS_COOKIE[@]}" \
+        -v $HOME/.mysql-workbench/workbench:/home/developer/.mysql/workbench \
+        -v $HOME/.mysql-workbench/workspace:/home/developer/workspace \
+        --link mysql-server \
+        openkbs/mysql-workbench \
+        /bin/bash -c 'touch /home/developer/.Xauthority && xauth add $XCOOKIE && mysql-workbench'
+}
