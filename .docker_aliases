@@ -29,6 +29,7 @@ function docker-ip {
 }
 
 function docker-connect {
+    dependencies "${1}"
     docker exec -it "${1}" "/bin/bash"
 }
 
