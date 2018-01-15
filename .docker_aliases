@@ -24,6 +24,14 @@ DBUS_OPTS=(
     -e DBUS_SESSION_BUS_ADDRESS
 )
 
+function docker-ip {
+    docker inspect --format '{{ .NetworkSettings.IPAddress }}' "${1}"
+}
+
+function docker-connect {
+    docker exec -it "${1}" "/bin/bash"
+}
+
 function dependencies {
     for container in "$@"; do
         local state
