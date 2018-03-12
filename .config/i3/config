@@ -135,7 +135,7 @@ assign [class="Slack"] $workspace3
 assign [class="Firefox"] $workspace8
 # Spotify sucks
 # https://github.com/i3/i3/issues/2060#issuecomment-155179472
-for_window [class="Spotify"] floating enable, resize set 2810 1500, move position center, move to workspace $workspace9
+for_window [class="Spotify"] floating enable, border none, resize set 3700 2000, move position center, move to workspace $workspace9
 
 # reload the configuration file
 bindsym $mod+Shift+c reload

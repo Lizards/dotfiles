@@ -1,8 +1,8 @@
 {
 	"color_scheme": "Packages/Neon Color Scheme/Neon.tmTheme",
-	"dpi_scale": 1.8,
+	"dpi_scale": 2.0,
 	"font_face": "Cousine",
-	"font_size": 9,
+	"font_size": 9.5,
 	"ignored_packages":
 	[
 		"Vintage"
