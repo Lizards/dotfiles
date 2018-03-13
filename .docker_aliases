@@ -82,6 +82,7 @@ function mysql-server {
             -v $HOME/work/mysql-data:/var/lib/mysql \
             -v $HOME/work/mysql-dumps:/mysql-dumps \
             -e MYSQL_ROOT_PASSWORD=root \
+            -e MYSQL_ROOT_HOST=172.17.0.1 \
             mysql/mysql-server:5.7.20
     fi
 }
@@ -97,4 +98,11 @@ function mysql-workbench {
         --link mysql-server \
         openkbs/mysql-workbench \
         /bin/bash -c 'touch /home/developer/.Xauthority && xauth add $XCOOKIE && mysql-workbench'
+}
+
+function memcached {
+    local name='memcached-1.4.36'
+    echo -e "Launching Memcached"
+    docker run --rm --detach --name $name \
+    memcached:1.4.36-alpine
 }
