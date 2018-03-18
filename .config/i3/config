@@ -171,7 +171,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 ### CUSTOM ###
-set $bg-image $HOME/Pictures/wallpaper.png
+set $bg-image $HOME/dotfiles/media/wallpapers/wallpaper.png
 
 font pango:Ubuntu, FontAwesome Bold 8
 
