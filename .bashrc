@@ -30,7 +30,7 @@ else
 color_prompt=
 fi
 
-. $HOME/.git-prompt.sh
+. $HOME/dotfiles/submodules/git/contrib/completion/git-prompt.sh
 
 bash_prompt() {
     local COLOR_NONE="\[\033[0m\]"  # unsets color to term's fg color
@@ -120,7 +120,7 @@ fi
 
 . /usr/share/z/z.sh
 
-source $HOME/git-completion.sh
+source $HOME/dotfiles/submodules/git/contrib/completion/git-completion.bash
 
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
