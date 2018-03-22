@@ -1,4 +1,8 @@
 #! /bin/bash
+# Docker entrypoint script for containers using X11 and Pulse Audio
+# - Debug output for display and sound settings
+# - Create user at runtime to match your UID/GID
+# - Create ~/.Xauthority and add magic cookie with XCOOKIE environment variable
 set -e
 
 function main() {
@@ -14,9 +18,11 @@ function main() {
         --uid ${USER_UID:-1000} \
         --gid ${USER_GID:-1000} \
         --home-dir $HOME \
-        --comment "Docker-Spotify-User" \
+        --create-home \
+        --comment "Docker-${1}-User" \
         $USERNAME
     chown -R $USERNAME:$USERNAME $HOME
+    usermod -a -G audio,video $USERNAME
 
     # Verify display settings
     if [ ! -d /tmp/.X11-unix/ ]; then
@@ -50,7 +56,7 @@ function main() {
     fi
 
     # Verify sound settings
-    echo -e "${BLUE}Checking for PulseaAudio${NC}"
+    echo -e "${BLUE}Checking for PulseAudio${NC}"
     if [ -z "${PULSE_SERVER}" ] || [ ! -e $(echo $PULSE_SERVER | cut -f2 -d":") ]; then
         echo -e "${YELLOW}[WARNING] * No PulseAudio socket transfered!"
         echo -e "            If audio is not working, pass environment variable PULSE_SERVER and bind mount the socket with:${NC}"
@@ -60,7 +66,7 @@ function main() {
         echo
     fi
 
-    sudo -Eu $USERNAME spotify $@
+    sudo -Eu $USERNAME $@
 
     echo -e "${BLUE}Shutting down${NC}"
 }

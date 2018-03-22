@@ -46,30 +46,26 @@ function dependencies {
 }
 
 function spotify {
-    local name='spotify'
-    echo -e "Launching spotify container" 
-    docker run --rm --detach --name $name \
+    local OPTS="$@"
+    if [ "${OPTS}" = "" ]; then
+        OPTS="--rm --detach"
+    fi
+    local name="spotify"
+    echo -e "Launching spotify container"
+    mkdir -p $HOME/.spotify/.config
+    mkdir -p $HOME/.spotify/.cache
+    # set -x
+    docker run $OPTS --name $name \
+        -v /etc/localtime:/etc/localtime:ro \
         "${X11_OPTS_COOKIE[@]}" \
         "${SOUND_OPTS[@]}" \
         "${DBUS_OPTS[@]}" \
-        -v $HOME/.spotify/config:/home/user/.config/spotify \
-        -v $HOME/.spotify/cache:/home/user/.cache/spotify \
+        -v $HOME/.spotify/.config:/home/spotify/.config \
+        -v $HOME/.spotify/.cache:/home/spotify/.cache \
+        --entrypoint '/bin/bash' \
         lizards/spotify \
-        --force-device-scale-factor=1.5
-}
-
-function mariadb-server {
-    local name='mariadb-server'
-    if [ "${1}" == "stop" ]; then
-        docker stop $name
-    else
-        echo -e "Launching MariaDB container"
-        docker run --rm --detach --name $name \
-            -v $HOME/work/mariadb-data:/var/lib/mysql \
-            -v $HOME/work/mysql-dumps:/mysql-dumps \
-            -e MYSQL_ROOT_PASSWORD=root \
-            mariadb:10.1.22
-    fi
+        -c 'touch ~/.Xauthority && xauth add $XCOOKIE && spotify --force-device-scale-factor=2.0'
+    # set +x
 }
 
 function mysql-server {
@@ -89,6 +85,8 @@ function mysql-server {
 
 function mysql-workbench {
     dependencies mysql-server
+    mkdir -p $HOME/.mysql-workbench/workbench
+    mkdir -p $HOME/.mysql-workbench/workspace
     local name='mysql-workbench'
     echo -e "Launching MySQL workbench"
     docker run --rm --detach --name $name \
@@ -105,4 +103,26 @@ function memcached {
     echo -e "Launching Memcached"
     docker run --rm --detach --name $name \
     memcached:1.4.36-alpine
+}
+
+function vlc {
+    local OPTS="$@"
+    if [ "${OPTS}" = "" ]; then
+        OPTS="--rm --detach"
+    fi
+    local name="vlc"
+    echo -e "Launching VLC container"
+    mkdir -p $HOME/.vlc/.config
+    # set -x
+    docker run $OPTS --name $name \
+        -v /etc/localtime:/etc/localtime:ro \
+        "${X11_OPTS_COOKIE[@]}" \
+        "${SOUND_OPTS[@]}" \
+        "${DBUS_OPTS[@]}" \
+        -v $HOME/.vlc/.config:/home/vlc/.config \
+        -v $HOME:/media:ro \
+        --entrypoint '/bin/bash' \
+        lizards/vlc \
+        -c 'touch ~/.Xauthority && xauth add $XCOOKIE && vlc'
+    # set +x
 }
