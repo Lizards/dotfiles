@@ -297,7 +297,7 @@ bindsym Control+Mod1+Left workspace prev
 bindsym $mod+d exec "dmenu_run -nb '$baseA2' -sf '$baseA2' -sb '$magenta' -nf '$baseB2' -fn 'ubuntumono-14' -p 'run:'"
 
 # lock screen
-bindsym $mod+x exec i3lock -i "$HOME/Pictures/solarized-mountains-dark.png" -t
+bindsym $mod+x exec i3lock -i "$HOME/dotfiles/media/wallpapers/lockpaper.png" -t
 
 # window style
 new_window pixel 1
