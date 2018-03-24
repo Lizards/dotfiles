@@ -126,3 +126,12 @@ function vlc {
         -c 'touch ~/.Xauthority && xauth add $XCOOKIE && vlc'
     # set +x
 }
+
+function shellcheck {
+    for file in "$@"; do
+        docker run --rm \
+            -v $file:/$file:ro \
+            koalaman/shellcheck \
+            -x $file
+    done
+}
