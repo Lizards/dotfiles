@@ -278,7 +278,7 @@ client.focused_inactive        $custom $custom $baseB2 $violet
 #}
 
 # Startup commands
-exec_always xrandr --dpi 220
+exec_always $HOME/.config/i3/xrandr.sh &
 exec_always feh --bg-scale $bg-image
 exec_always --no-startup-id $HOME/.config/i3/polybar.sh &
 exec --no-startup-id udiskie --tray &
