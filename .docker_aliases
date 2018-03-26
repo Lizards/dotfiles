@@ -68,6 +68,17 @@ function spotify {
     # set +x
 }
 
+function redis {
+    local name='redis-3.2'
+    if [ "${1}" == "stop" ]; then
+        docker stop $name
+    else
+        echo -e "Launching Redis container"
+        docker run --rm --detach --name $name \
+            redis:3.2
+    fi
+}
+
 function mysql-server {
     local name='mysql-server'
     if [ "${1}" == "stop" ]; then
@@ -91,6 +102,8 @@ function mysql-workbench {
     echo -e "Launching MySQL workbench"
     docker run --rm --detach --name $name \
         "${X11_OPTS_COOKIE[@]}" \
+        "${DBUS_OPTS[@]}" \
+        -v $HOME/.Xresources:/home/developer/.Xresources:ro \
         -v $HOME/.mysql-workbench/workbench:/home/developer/.mysql/workbench \
         -v $HOME/.mysql-workbench/workspace:/home/developer/workspace \
         --link mysql-server \

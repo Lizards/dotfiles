@@ -13,15 +13,19 @@ alias vi='vim'
 alias apidep='aws apigateway create-deployment --stage-name v1 --rest-api-id'
 alias tcpwatch="sudo tcpflow -p -c -i eth0 port 80 | grep -oE '(GET|POST|HEAD) .* HTTP/1.[01]|Host: .*'"
 alias rs='python manage.py runserver'
+alias rs3='python3 manage.py runserver'
 alias celd='python manage.py celeryd --loglevel=INFO --autoreload'
 alias celb='python manage.py celerybeat --scheduler=djcelery.schedulers.DatabaseScheduler'
-alias vpn="sudo openvpn --config $HOME/openvpn_confs/adi.ovpn --auth-retry interact --max-routes 5000"
 alias xsel='xsel --clipboard'
 alias please='sudo $(history -p \!\!)'
 
 function ec2list() {
     auth-aws $1
     aws --region us-east-1 --profile $AWS_DEFAULT_PROFILE ec2 describe-instances --no-paginate --query 'sort_by(Reservations[].Instances[].{IP:NetworkInterfaces[0].PrivateIpAddress, State:State.Name, Name:Tags[?Key==`Name`].Value | [0], Launched:LaunchTime}, &Name)' --output table;
+}
+
+function deps {
+    pacman -Qi $1 | grep Required
 }
 
 function vt() {
