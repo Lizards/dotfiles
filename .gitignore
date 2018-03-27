@@ -1,3 +1,4 @@
 .private_aliases
 .config/sublime-text-3
 .config/hexchat
+.config/gtk-3.0/servers
