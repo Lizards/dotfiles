@@ -142,8 +142,9 @@ function vlc {
 
 function shellcheck {
     for file in "$@"; do
+        file=$(realpath $file)
         docker run --rm \
-            -v $file:/$file:ro \
+            -v "${file}:/${file}:ro" \
             koalaman/shellcheck \
             -x $file
     done
