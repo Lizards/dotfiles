@@ -93,14 +93,14 @@ inherit = bar/base
 monitor = ${env:MONITOR:DP-2}
 modules-left = i3 xwindow
 modules-center = 
-modules-right = date
+modules-right = date utcdate
 
 [bar/right]
 inherit = bar/base
 monitor = ${env:MONITOR:DP-3}
 modules-left = i3 xwindow
 modules-center = 
-modules-right = cpu temperature volume wlan eth date
+modules-right = cpu temperature volume wlan eth date utcdate
 tray-position = right
 tray-padding = 2
 ;tray-transparent = true
@@ -153,6 +153,7 @@ label-unfocused-padding = ${self.padding}
 ; visible = Active workspace on unfocused monitor
 label-visible = ${self.label-fmt}
 label-visible-padding = ${self.padding}
+label-visible-underline= ${colors.foreground-alt}
 
 ; urgent = Workspace with urgency hint set
 label-urgent = ${self.label-fmt}
@@ -391,18 +392,17 @@ label-warn = %temperature-f%
 ;---------------------------------------
 
 ;---------------------------------------
-;	   USB MODULE
+;      UTC DATE MODULE
 ;---------------------------------------
-[module/usb]
+[module/utcdate]
 type = custom/script
-interval = 10
-; Could be exec = ~/.config/polybar/usb.sh /media/$USER
-exec = ~/.config/polybar/usb.sh
-; Unmount every devices on click
-click-left = udiskie-umount -a
-label = "%output:0:80%"
-format = "<label>"
+interval = 2
 
+; Available tokens:
+;   %counter%
+; Command to be executed (using "/usr/bin/env sh -c [command]")
+exec = date --utc +'%H:%M %Z'
+label = %output%
 
 ;---------------------------------------
 ;	   UNUSED MODULES

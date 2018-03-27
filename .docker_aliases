@@ -1,26 +1,28 @@
 #!/bin/bash
+# Suppress single quote warning:
+# shellcheck disable=SC2016
 
 X11_OPTS=(
     --device /dev/dri
-    -e DISPLAY=unix$DISPLAY
+    -e "DISPLAY=unix${DISPLAY}"
     -v /tmp/.X11-unix:/tmp/.X11-unix:ro
 )
 
 X11_OPTS_COOKIE=(
     "${X11_OPTS[@]}"
-    -e XCOOKIE="$(xauth list | grep unix | cut -f2 -d'/' | tr -cd '\11\12\15\40-\176' | sed -e 's/  / /g')"
+    -e "XCOOKIE=$(xauth list | grep unix | cut -f2 -d'/' | tr -cd '\11\12\15\40-\176' | sed -e 's/  / /g')"
 )
 
 SOUND_OPTS=(
 #    --device /dev/snd
 #    --group-add $(getent group audio | cut -d: -f3)
-    -e PULSE_SERVER=unix:$XDG_RUNTIME_DIR/pulse/native
-    -v $XDG_RUNTIME_DIR/pulse/native:$XDG_RUNTIME_DIR/pulse/native:ro
+    -e "PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native"
+    -v "${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native:ro"
 )
 
 DBUS_OPTS=(
     -v /run/dbus:/run/dbus:ro
-    -v $XDG_RUNTIME_DIR/bus:$XDG_RUNTIME_DIR/bus:ro
+    -v "${XDG_RUNTIME_DIR}/bus:${XDG_RUNTIME_DIR}/bus:ro"
     -e DBUS_SESSION_BUS_ADDRESS
 )
 
@@ -46,26 +48,26 @@ function dependencies {
 }
 
 function spotify {
-    local OPTS="$@"
+    local OPTS="$*"
     if [ "${OPTS}" = "" ]; then
         OPTS="--rm --detach"
     fi
     local name="spotify"
     echo -e "Launching spotify container"
-    mkdir -p $HOME/.spotify/.config
-    mkdir -p $HOME/.spotify/.cache
-    # set -x
-    docker run $OPTS --name $name \
+    mkdir -p "${HOME}/.spotify/.config"
+    mkdir -p "${HOME}/.spotify/.cache"
+    set -x
+    docker run "${OPTS}" --name $name \
         -v /etc/localtime:/etc/localtime:ro \
         "${X11_OPTS_COOKIE[@]}" \
         "${SOUND_OPTS[@]}" \
         "${DBUS_OPTS[@]}" \
-        -v $HOME/.spotify/.config:/home/spotify/.config \
-        -v $HOME/.spotify/.cache:/home/spotify/.cache \
-        --entrypoint '/bin/bash' \
+        -v "${HOME}/.spotify/.config:/home/spotify/.config" \
+        -v "${HOME}/.spotify/.cache:/home/spotify/.cache" \
+        --entrypoint "/bin/bash" \
         lizards/spotify \
         -c 'touch ~/.Xauthority && xauth add $XCOOKIE && spotify --force-device-scale-factor=2.0'
-    # set +x
+    set +x
 }
 
 function redis {
@@ -86,8 +88,8 @@ function mysql-server {
     else
         echo -e "Launching MySQL container"
         docker run --rm --detach --name $name \
-            -v $HOME/work/mysql-data:/var/lib/mysql \
-            -v $HOME/work/mysql-dumps:/mysql-dumps \
+            -v "${HOME}/work/mysql-data:/var/lib/mysql" \
+            -v "${HOME}/work/mysql-dumps:/mysql-dumps" \
             -e MYSQL_ROOT_PASSWORD=root \
             -e MYSQL_ROOT_HOST=172.17.0.1 \
             mysql/mysql-server:5.7.20
@@ -96,16 +98,16 @@ function mysql-server {
 
 function mysql-workbench {
     dependencies mysql-server
-    mkdir -p $HOME/.mysql-workbench/workbench
-    mkdir -p $HOME/.mysql-workbench/workspace
+    mkdir -p "${HOME}/.mysql-workbench/workbench"
+    mkdir -p "${HOME}/.mysql-workbench/workspace"
     local name='mysql-workbench'
     echo -e "Launching MySQL workbench"
     docker run --rm --detach --name $name \
         "${X11_OPTS_COOKIE[@]}" \
         "${DBUS_OPTS[@]}" \
-        -v $HOME/.Xresources:/home/developer/.Xresources:ro \
-        -v $HOME/.mysql-workbench/workbench:/home/developer/.mysql/workbench \
-        -v $HOME/.mysql-workbench/workspace:/home/developer/workspace \
+        -v "${HOME}/.Xresources:/home/developer/.Xresources:ro" \
+        -v "${HOME}/.mysql-workbench/workbench:/home/developer/.mysql/workbench" \
+        -v "${HOME}/.mysql-workbench/workspace:/home/developer/workspace" \
         --link mysql-server \
         openkbs/mysql-workbench \
         /bin/bash -c 'touch /home/developer/.Xauthority && xauth add $XCOOKIE && mysql-workbench'
@@ -119,22 +121,22 @@ function memcached {
 }
 
 function vlc {
-    local OPTS="$@"
+    local OPTS="$*"
     if [ "${OPTS}" = "" ]; then
         OPTS="--rm --detach"
     fi
     local name="vlc"
     echo -e "Launching VLC container"
-    mkdir -p $HOME/.vlc/.config
+    mkdir -p "${HOME}/.vlc/.config"
     # set -x
-    docker run $OPTS --name $name \
+    docker run "${OPTS}" --name $name \
         -v /etc/localtime:/etc/localtime:ro \
         "${X11_OPTS_COOKIE[@]}" \
         "${SOUND_OPTS[@]}" \
         "${DBUS_OPTS[@]}" \
-        -v $HOME/.vlc/.config:/home/vlc/.config \
-        -v $HOME:/media:ro \
-        --entrypoint '/bin/bash' \
+        -v "${HOME}/.vlc/.config:/home/vlc/.config" \
+        -v "${HOME}:/media:ro" \
+        --entrypoint "/bin/bash" \
         lizards/vlc \
         -c 'touch ~/.Xauthority && xauth add $XCOOKIE && vlc'
     # set +x
@@ -146,6 +148,6 @@ function shellcheck {
         docker run --rm \
             -v "${file}:/${file}:ro" \
             koalaman/shellcheck \
-            -x $file
+            -x "${file}"
     done
 }

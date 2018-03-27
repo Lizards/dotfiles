@@ -1,3 +1,9 @@
+#!/bin/bash
+# Suppress single quote warning:
+# shellcheck disable=SC2016
+# Don't follow includes:
+# shellcheck source=/dev/null
+
 source $HOME/.private_aliases
 source $HOME/.docker_aliases
 
@@ -20,18 +26,18 @@ alias xsel='xsel --clipboard'
 alias please='sudo $(history -p \!\!)'
 
 function ec2list() {
-    auth-aws $1
-    aws --region us-east-1 --profile $AWS_DEFAULT_PROFILE ec2 describe-instances --no-paginate --query 'sort_by(Reservations[].Instances[].{IP:NetworkInterfaces[0].PrivateIpAddress, State:State.Name, Name:Tags[?Key==`Name`].Value | [0], Launched:LaunchTime}, &Name)' --output table;
+    auth-aws "${1}"
+    aws --region us-east-1 --profile "${AWS_DEFAULT_PROFILE}" ec2 describe-instances --no-paginate --query 'sort_by(Reservations[].Instances[].{IP:NetworkInterfaces[0].PrivateIpAddress, State:State.Name, Name:Tags[?Key==`Name`].Value | [0], Launched:LaunchTime}, &Name)' --output table;
 }
 
 function deps {
-    pacman -Qi $1 | grep Required
+    pacman -Qi "${1}" | grep Required
 }
 
 function vt() {
     local fn=$1
-    aws cloudformation validate-template --template-body file://$fn;
-    /usr/bin/json_verify < $fn;
+    aws cloudformation validate-template --template-body "file://${fn}";
+    /usr/bin/json_verify < "${fn}";
 }
 
 # some more ls aliases
