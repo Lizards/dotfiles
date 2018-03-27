@@ -1,6 +1,6 @@
-[submodule "git"]
-	path = git
-	url = https://github.com/git/git
 [submodule "submodules/git"]
 	path = submodules/git
 	url = https://github.com/git/git
+[submodule "submodules/z"]
+	path = submodules/z
+	url = https://github.com/rupa/z
