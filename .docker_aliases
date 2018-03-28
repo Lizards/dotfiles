@@ -48,16 +48,16 @@ function dependencies {
 }
 
 function spotify {
-    local OPTS="$*"
-    if [ "${OPTS}" = "" ]; then
-        OPTS="--rm --detach"
+    local OPTS=("$*")
+    if [ "${OPTS[*]}" = "" ]; then
+        OPTS=(--rm --detach)
     fi
     local name="spotify"
     echo -e "Launching spotify container"
     mkdir -p "${HOME}/.spotify/.config"
     mkdir -p "${HOME}/.spotify/.cache"
     set -x
-    docker run "${OPTS}" --name $name \
+    docker run "${OPTS[@]}" --name $name \
         -v /etc/localtime:/etc/localtime:ro \
         "${X11_OPTS_COOKIE[@]}" \
         "${SOUND_OPTS[@]}" \
@@ -121,15 +121,15 @@ function memcached {
 }
 
 function vlc {
-    local OPTS="$*"
-    if [ "${OPTS}" = "" ]; then
-        OPTS="--rm --detach"
+    local OPTS=("$*")
+    if [ "${OPTS[*]}" = "" ]; then
+        OPTS=(--rm --detach)
     fi
     local name="vlc"
     echo -e "Launching VLC container"
     mkdir -p "${HOME}/.vlc/.config"
     # set -x
-    docker run "${OPTS}" --name $name \
+    docker run "${OPTS[@]}" --name $name \
         -v /etc/localtime:/etc/localtime:ro \
         "${X11_OPTS_COOKIE[@]}" \
         "${SOUND_OPTS[@]}" \
