@@ -11,9 +11,9 @@ export VISUAL='vim'
 
 alias http="python -m SimpleHTTPServer 8888"
 alias vi='vim'
-
 alias apidep='aws apigateway create-deployment --stage-name v1 --rest-api-id'
 alias tcpwatch="sudo tcpflow -p -c -i eth0 port 80 | grep -oE '(GET|POST|HEAD) .* HTTP/1.[01]|Host: .*'"
+alias pycleanup='find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf'
 alias rs='python manage.py runserver'
 alias celd='python manage.py celeryd --loglevel=INFO --autoreload'
 alias celb='python manage.py celerybeat --scheduler=djcelery.schedulers.DatabaseScheduler'
