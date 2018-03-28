@@ -4,22 +4,17 @@
 # Don't follow includes:
 # shellcheck source=/dev/null
 
-source $HOME/.private_aliases
-source $HOME/.docker_aliases
+source "${HOME}/.private_aliases"
+source "${HOME}/.docker_aliases"
 
 export VISUAL='vim'
 
 alias http="python -m SimpleHTTPServer 8888"
-alias python='python2'
-alias ipython='ipython2'
-alias pip='pip2'
-alias virtualenv='virtualenv2'
 alias vi='vim'
 
 alias apidep='aws apigateway create-deployment --stage-name v1 --rest-api-id'
 alias tcpwatch="sudo tcpflow -p -c -i eth0 port 80 | grep -oE '(GET|POST|HEAD) .* HTTP/1.[01]|Host: .*'"
 alias rs='python manage.py runserver'
-alias rs3='python3 manage.py runserver'
 alias celd='python manage.py celeryd --loglevel=INFO --autoreload'
 alias celb='python manage.py celerybeat --scheduler=djcelery.schedulers.DatabaseScheduler'
 alias xsel='xsel --clipboard'
