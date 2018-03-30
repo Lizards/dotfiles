@@ -144,6 +144,32 @@ function vlc {
         -c 'touch ~/.Xauthority && xauth add $XCOOKIE && vlc'
 }
 
+function rutorrent {
+    local name='rutorrent'
+    local OPTS=("$*")
+    if [ "${1}" = "stop" ]; then
+        docker stop $name
+    else
+        if [ "${OPTS[*]}" = "" ]; then
+            OPTS=(--rm --detach)
+        fi
+        echo -e "Launching ${name} container"
+        mkdir -p "${HOME}/.rutorrent/config"
+        mkdir -p "${HOME}/.rutorrent/downloads"
+        docker run "${OPTS[@]}" --name=$name \
+            -v "${HOME}/.rutorrent/config:/config" \
+            -v "${HOME}/.rutorrent/downloads:/downloads" \
+            -e PGID="$(id --group)" \
+            -e PUID="$(id --user)" \
+            -e TZ="$(timedatectl | grep "Time zone" | awk '{print $3}')" \
+            -p 8080:80 \
+            -p 5000:5000 \
+            -p 51413:51413 \
+            -p 6881:6881/udp \
+            linuxserver/rutorrent
+    fi
+}
+
 function shellcheck {
     for file in "$@"; do
         file=$(realpath $file)
