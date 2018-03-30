@@ -115,9 +115,13 @@ function mysql-workbench {
 
 function memcached {
     local name='memcached-1.4.36'
-    echo -e "Launching Memcached"
-    docker run --rm --detach --name $name \
-    memcached:1.4.36-alpine
+    if [ "${1}" == "stop" ]; then
+        docker stop $name
+    else
+        echo -e "Launching Memcached"
+        docker run --rm --detach --name $name \
+        memcached:1.4.36-alpine
+    fi
 }
 
 function vlc {
@@ -128,7 +132,6 @@ function vlc {
     local name="vlc"
     echo -e "Launching VLC container"
     mkdir -p "${HOME}/.vlc/.config"
-    # set -x
     docker run "${OPTS[@]}" --name $name \
         -v /etc/localtime:/etc/localtime:ro \
         "${X11_OPTS_COOKIE[@]}" \
@@ -139,7 +142,6 @@ function vlc {
         --entrypoint "/bin/bash" \
         lizards/vlc \
         -c 'touch ~/.Xauthority && xauth add $XCOOKIE && vlc'
-    # set +x
 }
 
 function shellcheck {
