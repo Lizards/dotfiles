@@ -4,7 +4,7 @@
 
 X11_OPTS=(
     --device /dev/dri
-    -e "DISPLAY=unix${DISPLAY}"
+    -e DISPLAY
     -v /tmp/.X11-unix:/tmp/.X11-unix:ro
 )
 
@@ -25,6 +25,23 @@ DBUS_OPTS=(
     -v "${XDG_RUNTIME_DIR}/bus:${XDG_RUNTIME_DIR}/bus:ro"
     -e DBUS_SESSION_BUS_ADDRESS
 )
+
+XDG_OPEN_SERVER_OPTS=(
+    -e "UID=$(id --user)"
+    -v "${XDG_RUNTIME_DIR}/xdg-open-server:${XDG_RUNTIME_DIR}/xdg-open-server:ro"
+)
+
+GTK_OPTS=(
+    -v /usr/share/themes/:/usr/share/themes/
+    -v "${HOME}/.gtkrc-2.0:/home/USER/.gtkrc-2.0"
+)
+
+function docker-cleanup {
+    # Remove stopped containers
+    docker ps -aq --no-trunc | xargs docker rm
+    # Remove dangling/untagged images
+    docker images -q --filter dangling=true | xargs docker rmi
+}
 
 function docker-ip {
     docker inspect --format '{{ .NetworkSettings.IPAddress }}' "${1}"
@@ -101,16 +118,17 @@ function mysql-workbench {
     mkdir -p "${HOME}/.mysql-workbench/workbench"
     mkdir -p "${HOME}/.mysql-workbench/workspace"
     local name='mysql-workbench'
+    local user='developer'
     echo -e "Launching MySQL workbench"
     docker run --rm --detach --name $name \
         "${X11_OPTS_COOKIE[@]}" \
         "${DBUS_OPTS[@]}" \
-        -v "${HOME}/.Xresources:/home/developer/.Xresources:ro" \
-        -v "${HOME}/.mysql-workbench/workbench:/home/developer/.mysql/workbench" \
-        -v "${HOME}/.mysql-workbench/workspace:/home/developer/workspace" \
+        "${GTK_OPTS[@]//USER/$user}" \
+        -v "${HOME}/.mysql-workbench/workbench:/home/${user}/.mysql/workbench" \
+        -v "${HOME}/.mysql-workbench/workspace:/home/${user}/workspace" \
         --link mysql-server \
         openkbs/mysql-workbench \
-        /bin/bash -c 'touch /home/developer/.Xauthority && xauth add $XCOOKIE && mysql-workbench'
+        /bin/bash -c "touch /home/${user}/.Xauthority && xauth add \$XCOOKIE && mysql-workbench"
 }
 
 function memcached {
@@ -142,6 +160,26 @@ function vlc {
         --entrypoint "/bin/bash" \
         lizards/vlc \
         -c 'touch ~/.Xauthority && xauth add $XCOOKIE && vlc'
+}
+
+function filezilla {
+    local name='filezilla'
+    local user='filezilla'
+    local OPTS=("$*")
+    if [ "${OPTS[*]}" = "" ]; then
+        OPTS=(--rm --detach)
+    fi
+    echo -e "Launching Filezilla container"
+    mkdir -p "${HOME}/.filezilla"
+    docker run "${OPTS[@]}" --name $name \
+        -v /etc/localtime:/etc/localtime:ro \
+        "${DBUS_OPTS[@]}" \
+        "${X11_OPTS_COOKIE[@]}" \
+        "${XDG_OPEN_SERVER_OPTS[@]}" \
+        "${GTK_OPTS[@]//USER/$user}" \
+        -v "${HOME}/.filezilla:/home/${user}/.config/filezilla" \
+        -v "${HOME}:/host" \
+        lizards/filezilla
 }
 
 function rutorrent {

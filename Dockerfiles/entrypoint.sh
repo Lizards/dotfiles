@@ -36,14 +36,14 @@ function main() {
     if [ -z "${DISPLAY}" ]; then
         echo -e "${RED}[ERROR] * No DISPLAY environment variable!  Set value with:${NC}"
         echo
-        echo -e "-e DISPLAY=unix\$DISPLAY"
+        echo -e "-e DISPLAY"
         echo
         exit 1
     fi
 
     if [ -z "${XCOOKIE}" ]; then
         echo -e "${YELLOW}[WARNING] * No X11 magic cookie value supplied!"
-        echo -e "            If you get an error like \"Gtk-WARNING **: cannot open display: unix:0\", try passing the X11 magic cookie with:${NC}"
+        echo -e "            If you get an error like \"Gtk-WARNING **: cannot open display: :0\", try passing the X11 magic cookie with:${NC}"
         echo
         echo -e "-e XCOOKIE=\"\$(xauth list | grep unix | cut -f2 -d\"/\" | tr -cd '\11\12\15\40-\176' | sed -e 's/  / /g')\""
         echo
@@ -56,14 +56,16 @@ function main() {
     fi
 
     # Verify sound settings
-    echo -e "${BLUE}Checking for PulseAudio${NC}"
-    if [ -z "${PULSE_SERVER}" ] || [ ! -e $(echo $PULSE_SERVER | cut -f2 -d":") ]; then
-        echo -e "${YELLOW}[WARNING] * No PulseAudio socket transfered!"
-        echo -e "            If audio is not working, pass environment variable PULSE_SERVER and bind mount the socket with:${NC}"
-        echo
-        echo -e "-e PULSE_SERVER=unix:\$XDG_RUNTIME_DIR/pulse/native"
-        echo -e "-v \$XDG_RUNTIME_DIR/pulse/native:\$XDG_RUNTIME_DIR/pulse/native:ro"
-        echo
+    if [ -z "${NO_SOUND}" ]; then
+        echo -e "${BLUE}Checking for PulseAudio${NC}"
+        if [ -z "${PULSE_SERVER}" ] || [ ! -e $(echo $PULSE_SERVER | cut -f2 -d":") ]; then
+            echo -e "${YELLOW}[WARNING] * No PulseAudio socket transfered!"
+            echo -e "            If audio is not working, pass environment variable PULSE_SERVER and bind mount the socket with:${NC}"
+            echo
+            echo -e "-e PULSE_SERVER=unix:\$XDG_RUNTIME_DIR/pulse/native"
+            echo -e "-v \$XDG_RUNTIME_DIR/pulse/native:\$XDG_RUNTIME_DIR/pulse/native:ro"
+            echo
+        fi
     fi
 
     sudo -Eu $USERNAME $@

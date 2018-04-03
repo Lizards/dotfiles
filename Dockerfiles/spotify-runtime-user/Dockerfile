@@ -9,7 +9,7 @@
 #
 # docker run --rm --detach --name spotify \
 #     `# Display (required)` \
-#     -e DISPLAY=unix$DISPLAY \
+#     -e DISPLAY \
 #     -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 #     `# Display (optional)` \
 #     --device /dev/dri \

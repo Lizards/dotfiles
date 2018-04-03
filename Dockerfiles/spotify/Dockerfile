@@ -6,7 +6,7 @@
 #     -v /etc/localtime:/etc/localtime:ro \
 #     `# Display` \
 #     --device /dev/dri \
-#     -e DISPLAY=unix$DISPLAY \
+#     -e DISPLAY \
 #     -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 #     -e XCOOKIE="$(xauth list | grep unix | cut -f2 -d"/" | tr -cd '\11\12\15\40-\176' | sed -e 's/  / /g')" \
 #     `# Sound` \
