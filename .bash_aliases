@@ -4,10 +4,8 @@
 # Don't follow includes:
 # shellcheck source=/dev/null
 
-source "${HOME}/.private_aliases"
-source "${HOME}/.docker_aliases"
-
-export VISUAL='vim'
+. "${HOME}/.private_aliases"
+. "${HOME}/.docker_aliases"
 
 alias http="python -m SimpleHTTPServer 8888"
 alias vi='vim'
@@ -19,6 +17,7 @@ alias celd='python manage.py celeryd --loglevel=INFO --autoreload'
 alias celb='python manage.py celerybeat --scheduler=djcelery.schedulers.DatabaseScheduler'
 alias xsel='xsel --clipboard'
 alias please='sudo $(history -p \!\!)'
+alias back='cd $OLDPWD'
 
 function ec2list() {
     auth-aws "${1}"

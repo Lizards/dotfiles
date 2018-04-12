@@ -29,6 +29,8 @@ DBUS_OPTS=(
 XDG_OPEN_SERVER_OPTS=(
     -e "UID=$(id --user)"
     -v "${XDG_RUNTIME_DIR}/xdg-open-server:${XDG_RUNTIME_DIR}/xdg-open-server:ro"
+    -v /usr/share/xdg-open-server/xdg-open.sh:/usr/bin/xdg-open:ro
+    -v /bin/socat:/bin/socat
 )
 
 GTK_OPTS=(
@@ -79,11 +81,12 @@ function spotify {
         "${X11_OPTS_COOKIE[@]}" \
         "${SOUND_OPTS[@]}" \
         "${DBUS_OPTS[@]}" \
+        -e DOCKER_SPOTIFY_FORCE_DEVICE_SCALE_FACTOR \
         -v "${HOME}/.spotify/.config:/home/spotify/.config" \
         -v "${HOME}/.spotify/.cache:/home/spotify/.cache" \
         --entrypoint "/bin/bash" \
         lizards/spotify \
-        -c 'touch ~/.Xauthority && xauth add $XCOOKIE && spotify --force-device-scale-factor=2.0'
+        -c 'touch ~/.Xauthority && xauth add $XCOOKIE && spotify --force-device-scale-factor=$DOCKER_SPOTIFY_FORCE_DEVICE_SCALE_FACTOR'
     set +x
 }
 

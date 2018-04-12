@@ -40,13 +40,11 @@ RUN apt-get update && apt-get install -y \
     gtk2-engines-murrine \
     gtk2-engines-pixbuf \
     gnome-themes-standard \
-    socat \
     filezilla \
     --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir -p $HOME/.config
 
-ADD xdg-open.sh /usr/bin/xdg-open
 ADD entrypoint.sh /usr/bin/entrypoint
 ENTRYPOINT ["/usr/bin/entrypoint", "filezilla"]
 CMD []
