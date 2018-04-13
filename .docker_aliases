@@ -27,7 +27,6 @@ DBUS_OPTS=(
 )
 
 XDG_OPEN_SERVER_OPTS=(
-    -e "UID=$(id --user)"
     -v "${XDG_RUNTIME_DIR}/xdg-open-server:${XDG_RUNTIME_DIR}/xdg-open-server:ro"
     -v /usr/share/xdg-open-server/xdg-open.sh:/usr/bin/xdg-open:ro
     -v /bin/socat:/bin/socat
@@ -98,6 +97,24 @@ function redis {
         echo -e "Launching Redis container"
         docker run --rm --detach --name $name \
             redis:3.2
+    fi
+}
+
+function redis-cluster {
+    local name='redis-cluster-3.2.10'
+    if [ "${1}" == "stop" ]; then
+        docker stop $name
+    else
+        echo -e "Launching Redis Cluster container"
+        docker run --rm --detach --name $name \
+            -p 7000:7000 \
+            -p 7001:7001 \
+            -p 7002:7002 \
+            -p 7003:7003 \
+            -p 7004:7004 \
+            -p 7005:7005 \
+            -e CLUSTER_ONLY=true \
+            grokzen/redis-cluster:3.2.10
     fi
 }
 
