@@ -52,6 +52,13 @@ function docker-connect {
     docker exec -it "${1}" "/bin/bash"
 }
 
+function docker-image-stop {
+    containers="$(docker ps -a -q  --filter ancestor="${1}")"
+    for c in $containers; do
+        docker stop "${c}"
+    done
+}
+
 function dependencies {
     for container in "$@"; do
         local state
@@ -120,6 +127,11 @@ function slack {
 }
 
 function redis {
+    # Usage:
+    # One container: $ redis
+    # A master and one slave: $ redis slave
+    # A master and three slaves: $ redis slave 3
+    # Stop all containers using this image: $ redis stop
     set -x
     local image="bitnami/redis:latest"
     local OPTS=("$*")
@@ -130,30 +142,28 @@ function redis {
     local slave_name="${name}-slave"
 
     if [ "${1}" == "stop" ]; then
-        docker stop $name
-        docker stop $slave_name
+        docker-image-stop $image
     else
-        if [ "${1}" == "slave" ] ; then
+        if [ "${1}" == "slave" ]; then
+            slave_count=${2:-1}
             dependencies redis
-            REDIS_OPTS=(
-                --name "${slave_name}"
-                --link "${name}:master"
-                -e "REDIS_REPLICATION_MODE=slave"
-                -e "REDIS_MASTER_HOST=master"
-                -e "REDIS_MASTER_PORT_NUMBER=6379"
-            )
+            for i in $(seq 1 "${slave_count}"); do
+                docker run "${OPTS[@]}" \
+                    --name "${slave_name}-${i}" \
+                    --link "${name}:master" \
+                    -e "REDIS_REPLICATION_MODE=slave" \
+                    -e "REDIS_MASTER_HOST=master" \
+                    -e "REDIS_MASTER_PORT_NUMBER=6379" \
+                    -e ALLOW_EMPTY_PASSWORD=yes \
+                    $image
+            done
         else
-            REDIS_OPTS=(
-                --name "${name}"
-                -e "REDIS_REPLICATION_MODE=master"
-            )
+            docker run "${OPTS[@]}" \
+                --name "${name}" \
+                -e "REDIS_REPLICATION_MODE=master" \
+                -e ALLOW_EMPTY_PASSWORD=yes \
+                $image
         fi
-
-        echo -e "Launching Redis container"
-        docker run "${OPTS[@]}" \
-            "${REDIS_OPTS[@]}" \
-            -e ALLOW_EMPTY_PASSWORD=yes \
-            $image
     fi
     set +x
 }
