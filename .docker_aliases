@@ -220,13 +220,13 @@ function mysql-workbench {
 }
 
 function memcached {
-    local name='memcached-1.4.36'
+    local name='memcached'
     if [ "${1}" == "stop" ]; then
         docker stop $name
     else
         echo -e "Launching Memcached"
         docker run --rm --detach --name $name \
-        memcached:1.4.36-alpine
+        memcached:latest
     fi
 }
 
