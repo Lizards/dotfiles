@@ -8,14 +8,14 @@ X11_OPTS=(
     -v /tmp/.X11-unix:/tmp/.X11-unix:ro
 )
 
-X11_OPTS_COOKIE=(
+X11_COOKIE_OPTS=(
     "${X11_OPTS[@]}"
     -e "XCOOKIE=$(xauth list | grep unix | cut -f2 -d'/' | tr -cd '\11\12\15\40-\176' | sed -e 's/  / /g')"
 )
 
 SOUND_OPTS=(
 #    --device /dev/snd
-#    --group-add $(getent group audio | cut -d: -f3)
+#    --group-add "$(getent group audio | cut -d: -f3)"
     -e "PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native"
     -v "${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native:ro"
 )
@@ -29,7 +29,6 @@ DBUS_OPTS=(
 XDG_OPEN_SERVER_OPTS=(
     -v "${XDG_RUNTIME_DIR}/xdg-open-server:${XDG_RUNTIME_DIR}/xdg-open-server:ro"
     -v /usr/share/xdg-open-server/xdg-open.sh:/usr/bin/xdg-open:ro
-    -v /bin/socat:/bin/socat
 )
 
 GTK_OPTS=(
@@ -77,7 +76,8 @@ function spotify {
     set -x
     docker run "${OPTS[@]}" --name $name \
         -v /etc/localtime:/etc/localtime:ro \
-        "${X11_OPTS_COOKIE[@]}" \
+        "${XDG_OPEN_SERVER_OPTS[@]}" \
+        "${X11_COOKIE_OPTS[@]}" \
         "${SOUND_OPTS[@]}" \
         "${DBUS_OPTS[@]}" \
         -e DOCKER_SPOTIFY_FORCE_DEVICE_SCALE_FACTOR \
@@ -89,15 +89,73 @@ function spotify {
     set +x
 }
 
+function slack {
+    local OPTS=("$*")
+    if [ "${OPTS[*]}" = "" ]; then
+        OPTS=(--rm --detach)
+    fi
+    local name='slack'
+    local user='slack'
+    echo -e "Launching Slack container"
+    mkdir -p "${HOME}/.slack/"
+    set -x
+    docker run "${OPTS[@]}" --name $name \
+        -v /etc/localtime:/etc/localtime:ro \
+        --ipc="host" \
+        --shm-size="1024" \
+        `# The below fixes: libudev: udev_has_devtmpfs: name_to_handle_at on /dev: Operation not permitted` \
+        --security-opt seccomp=unconfined \
+        "${XDG_OPEN_SERVER_OPTS[@]}" \
+        "${X11_COOKIE_OPTS[@]}" \
+        "${SOUND_OPTS[@]}" \
+        "${DBUS_OPTS[@]}" \
+        "${GTK_OPTS[@]//USER/$user}" \
+        -v "${HOME}/.slack:/home/${user}/.config/Slack" \
+        -v "${HOME}:/media:ro" \
+        -e DOCKER_SLACK_FORCE_DEVICE_SCALE_FACTOR \
+        --entrypoint "/bin/bash" \
+        lizards/slack \
+        -c 'touch ~/.Xauthority && xauth add $XCOOKIE && /usr/lib/slack/slack --force-device-scale-factor=$DOCKER_SLACK_FORCE_DEVICE_SCALE_FACTOR'
+    set +x
+}
+
 function redis {
-    local name='redis-3.2'
+    set -x
+    local image="bitnami/redis:latest"
+    local OPTS=("$*")
+    if [ "${OPTS[*]}" = "" ] || [ "${1}" == "slave" ]; then
+        OPTS=(--rm --detach)
+    fi
+    local name='redis-3.2.11'
+    local slave_name="${name}-slave"
+
     if [ "${1}" == "stop" ]; then
         docker stop $name
+        docker stop $slave_name
     else
+        if [ "${1}" == "slave" ] ; then
+            dependencies redis
+            REDIS_OPTS=(
+                --name "${slave_name}"
+                --link "${name}:master"
+                -e "REDIS_REPLICATION_MODE=slave"
+                -e "REDIS_MASTER_HOST=master"
+                -e "REDIS_MASTER_PORT_NUMBER=6379"
+            )
+        else
+            REDIS_OPTS=(
+                --name "${name}"
+                -e "REDIS_REPLICATION_MODE=master"
+            )
+        fi
+
         echo -e "Launching Redis container"
-        docker run --rm --detach --name $name \
-            redis:3.2
+        docker run "${OPTS[@]}" \
+            "${REDIS_OPTS[@]}" \
+            -e ALLOW_EMPTY_PASSWORD=yes \
+            $image
     fi
+    set +x
 }
 
 function redis-cluster {
@@ -105,7 +163,7 @@ function redis-cluster {
     if [ "${1}" == "stop" ]; then
         docker stop $name
     else
-        echo -e "Launching Redis Cluster container"
+        echo -e "Launching Redis Sharded Cluster container"
         docker run --rm --detach --name $name \
             -p 7000:7000 \
             -p 7001:7001 \
@@ -141,7 +199,7 @@ function mysql-workbench {
     local user='developer'
     echo -e "Launching MySQL workbench"
     docker run --rm --detach --name $name \
-        "${X11_OPTS_COOKIE[@]}" \
+        "${X11_COOKIE_OPTS[@]}" \
         "${DBUS_OPTS[@]}" \
         "${GTK_OPTS[@]//USER/$user}" \
         -v "${HOME}/.mysql-workbench/workbench:/home/${user}/.mysql/workbench" \
@@ -172,7 +230,7 @@ function vlc {
     mkdir -p "${HOME}/.vlc/.config"
     docker run "${OPTS[@]}" --name $name \
         -v /etc/localtime:/etc/localtime:ro \
-        "${X11_OPTS_COOKIE[@]}" \
+        "${X11_COOKIE_OPTS[@]}" \
         "${SOUND_OPTS[@]}" \
         "${DBUS_OPTS[@]}" \
         -v "${HOME}/.vlc/.config:/home/vlc/.config" \
@@ -193,8 +251,9 @@ function filezilla {
     mkdir -p "${HOME}/.filezilla"
     docker run "${OPTS[@]}" --name $name \
         -v /etc/localtime:/etc/localtime:ro \
+        --net=host \
         "${DBUS_OPTS[@]}" \
-        "${X11_OPTS_COOKIE[@]}" \
+        "${X11_COOKIE_OPTS[@]}" \
         "${XDG_OPEN_SERVER_OPTS[@]}" \
         "${GTK_OPTS[@]//USER/$user}" \
         -v "${HOME}/.filezilla:/home/${user}/.config/filezilla" \

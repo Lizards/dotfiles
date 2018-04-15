@@ -29,6 +29,7 @@ FROM jess/spotify
 USER root
 RUN apt-get update && apt-get install -y \
     xauth \
+    socat \
     --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 

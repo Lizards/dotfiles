@@ -37,6 +37,7 @@ RUN apt-get update && apt-get install -y \
     gnupg \
     sudo \
     xauth \
+    socat \
     gtk2-engines-murrine \
     gtk2-engines-pixbuf \
     gnome-themes-standard \
