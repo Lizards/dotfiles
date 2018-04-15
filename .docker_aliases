@@ -28,7 +28,7 @@ DBUS_OPTS=(
 
 XDG_OPEN_SERVER_OPTS=(
     -v "${XDG_RUNTIME_DIR}/xdg-open-server:${XDG_RUNTIME_DIR}/xdg-open-server:ro"
-    -v /usr/share/xdg-open-server/xdg-open.sh:/usr/bin/xdg-open:ro
+    -v /usr/lib/xdg-open-server/xdg-open:/usr/local/bin/xdg-open:ro
 )
 
 GTK_OPTS=(
