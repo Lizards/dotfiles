@@ -30,6 +30,7 @@ FROM jess/vlc
 USER root
 RUN apt-get update && apt-get install -y \
     xauth \
+    vlc-plugin-access-extra \
     --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 

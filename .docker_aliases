@@ -126,6 +126,28 @@ function slack {
     set +x
 }
 
+function discord {
+    local OPTS=("$*")
+    if [ "${OPTS[*]}" = "" ]; then
+        OPTS=(--rm --detach)
+    fi
+    local name="discord"
+    echo -e "Launching discord container"
+    mkdir -p "${HOME}/.discord/.config"
+    set -x
+    docker run "${OPTS[@]}" --name $name \
+        -v /etc/localtime:/etc/localtime:ro \
+        "${XDG_OPEN_SERVER_OPTS[@]}" \
+        "${X11_COOKIE_OPTS[@]}" \
+        "${SOUND_OPTS[@]}" \
+        "${DBUS_OPTS[@]}" \
+        -v "${HOME}/.discord/.config:/home/discord/.config/discord/" \
+        --entrypoint "/bin/bash" \
+        lizards/discord \
+        -c 'touch ~/.Xauthority && xauth add $XCOOKIE && discord'
+    set +x
+}
+
 function redis {
     # Usage:
     # One container: $ redis
@@ -249,6 +271,27 @@ function vlc {
         lizards/vlc \
         -c 'touch ~/.Xauthority && xauth add $XCOOKIE && vlc'
 }
+
+function vlc-screenshare {
+    local OPTS=("$*")
+    if [ "${OPTS[*]}" = "" ]; then
+        OPTS=(--rm --detach)
+    fi
+    local name="vlc"
+    echo -e "Launching VLC container"
+    mkdir -p "${HOME}/.vlc/.config"
+    docker run "${OPTS[@]}" --name $name \
+        -v /etc/localtime:/etc/localtime:ro \
+        "${X11_COOKIE_OPTS[@]}" \
+        "${SOUND_OPTS[@]}" \
+        "${DBUS_OPTS[@]}" \
+        -v "${HOME}/.vlc/.config:/home/vlc/.config" \
+        -v "${HOME}:/media:ro" \
+        --entrypoint "/bin/bash" \
+        lizards/vlc \
+        -c 'touch ~/.Xauthority && xauth add $XCOOKIE && vlc vlc --no-video-deco  --no-embedded-video --screen-fps=5 --screen-top=0 --screen-left=3840 --screen-width=3840 --screen-height=2160 screen://'
+}
+
 
 function filezilla {
     local name='filezilla'
