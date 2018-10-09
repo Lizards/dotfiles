@@ -18,6 +18,7 @@ alias celb='python manage.py celerybeat --scheduler=djcelery.schedulers.Database
 alias xsel='xsel --clipboard'
 alias please='sudo $(history -p \!\!)'
 alias back='cd $OLDPWD'
+alias owns='pacman -Qo'
 
 function ec2list() {
     auth-aws "${1}"
