@@ -7,7 +7,7 @@
 . "${HOME}/.private_aliases"
 . "${HOME}/.docker_aliases"
 
-alias http="python2 -m SimpleHTTPServer 8888"
+alias http="python -m http.server 8888"
 alias vi='vim'
 alias apidep='aws apigateway create-deployment --stage-name v1 --rest-api-id'
 alias tcpwatch="sudo tcpflow -p -c -i eth0 port 80 | grep -oE '(GET|POST|HEAD) .* HTTP/1.[01]|Host: .*'"
