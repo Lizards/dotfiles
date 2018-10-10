@@ -9,6 +9,9 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+# merge for colors
+exec_always --no-startup-id xrdb -merge $HOME/.Xresources &
+
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -133,9 +136,12 @@ assign [class="Sublime_text"] $workspace2
 assign [class="Hexchat"] $workspace3
 assign [class="Slack"] $workspace3
 assign [class="Firefox"] $workspace8
+assign [class="VirtualBox"] $workspace10
 # Spotify sucks
 # https://github.com/i3/i3/issues/2060#issuecomment-155179472
-for_window [class="Spotify"] floating enable, border none, resize set 3700 2000, move position center, move to workspace $workspace9
+set_from_resource $dockerSpotifyWidth i3.DOCKER-SPOTIFY-W 1000
+set_from_resource $dockerSpotifyHeight i3.DOCKER-SPOTIFY-H 500
+for_window [class="Spotify"] floating enable, resize set $dockerSpotifyWidth $dockerSpotifyHeight, move position center, move to workspace $workspace9
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -283,12 +289,11 @@ exec_always --no-startup-id feh --bg-scale $bg-image
 exec_always --no-startup-id $HOME/.config/i3/polybar.sh &
 exec --no-startup-id udiskie --tray &
 exec --no-startup-id xdg-open-server &
-# exec --no-startup-id wicd-client -t
+exec --no-startup-id blueberry-tray &
 
 # Default splitv, custom on some workspaces
 default_orientation vertical
 workspace_layout default
-# exec_always $HOME/.config/i3/per-workspace-layout.pl
 
 # Unity style workspace switching
 bindsym Control+Mod1+Right workspace next
@@ -315,8 +320,9 @@ for_window [class="Nautilus"] floating enable
 for_window [class="Arandr"] floating enable
 for_window [class="Gimp"] floating enable
 for_window [class="KeePass2"] floating enable border normal
-for_window [class="Wicd"] floating enable
+for_window [class="Wicd"] floating enable border normal
 for_window [class="Dconf-editor"] floating enable
+for_window [class="Blueberry"] floating enable border normal
 
 # audio controls
 bindsym XF86AudioRaiseVolume exec amixer set Master 5%+ && cvlc --no-one-instance --play-and-exit /usr/share/sounds/gnome/default/alerts/drip.ogg # increase sound volume
@@ -327,6 +333,3 @@ bindsym XF86AudioMicMute exec amixer set Capture toggle # mute mic
 # screen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # && bash $HOME/.config/i3/brightness.sh # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # && bash $HOME/.config/i3/brightness.sh # decrease screen brightness
-
-# merge for colors
-exec xrdb -merge $HOME/.Xresources

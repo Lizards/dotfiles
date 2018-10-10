@@ -153,3 +153,5 @@ URxvt.keysym.Control-Right: \033[1;5C
 !! make bold colors work in terminal
 URxvt*dynamicColors: on
 URxvt.intensityStyles: false
+
+#include ".Xresources.d/i3"
