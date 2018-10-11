@@ -107,6 +107,18 @@ tray-padding = 2
 ;tray-background = #0063ff
 
 ;---------------------------------------
+;       LENOVO LAPTOP SCREEN BAR
+;---------------------------------------
+[bar/laptop]
+inherit = bar/base
+;monitor = ${env:MONITOR:HDMI-1}
+modules-left = i3 xwindow
+modules-center = 
+modules-right = cpu temperature volume xbacklight wlan eth battery date utcdate
+tray-position = right
+tray-padding = 2
+
+;---------------------------------------
 ;	   XWINDOW MODULE (TITLE)
 ;---------------------------------------
 [module/xwindow]
@@ -131,6 +143,7 @@ ws-icon-0 = "1; "
 ws-icon-1 = "2; "
 ws-icon-2 = "3; "
 ws-icon-3 = "9; "
+ws-icon-4 = "10; "
 
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
@@ -227,7 +240,7 @@ bar-load-empty-foreground = ${colors.slider-bar-bg}
 ;---------------------------------------
 [module/wlan]
 type = internal/network
-interface = wlp5s0
+interface = ${env:POLYBAR_WLAN_INTERFACE}
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
@@ -254,7 +267,7 @@ animation-packetloss-framerate = 500
 
 [module/eth]
 type = internal/network
-interface = enp6s0
+interface = ${env:POLYBAR_ETH_INTERFACE}
 interval = 3.0
 
 ;format-connected-underline = #55aa55
