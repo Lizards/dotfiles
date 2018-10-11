@@ -7,5 +7,7 @@ killall -q polybar
 while pgrep -x polybar >/dev/null; do sleep 1; done
 
 # Launch polybar
-polybar left &
-polybar right &
+for bar in $POLYBAR_BARS; do
+	echo "Starting polybar: $bar"
+    polybar "$bar" &
+done

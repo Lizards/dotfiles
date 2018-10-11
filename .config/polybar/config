@@ -293,7 +293,10 @@ label = %date% %time%
 ;	   VOLUME MODULE
 ;---------------------------------------
 [module/volume]
-type = internal/volume
+type = internal/pulseaudio
+
+use-ui-max = true
+interval = 3
 
 format-volume = <label-volume> <bar-volume>
 format-volume-prefix = " "

@@ -5,6 +5,8 @@ export VISUAL
 EDITOR="/bin/vi -e"
 export EDITOR
 
+export POLYBAR_BARS="left right"
+
 export HISTSIZE=500000
 export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
