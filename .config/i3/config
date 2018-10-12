@@ -284,9 +284,9 @@ client.focused_inactive        $custom $custom $baseB2 $violet
 #}
 
 # Startup commands
-exec_always --no-startup-id $HOME/.config/i3/xrandr.sh &
+exec_always --no-startup-id xrandr.local &
 exec_always --no-startup-id feh --bg-scale $bg-image
-exec_always --no-startup-id $HOME/.config/i3/polybar.sh &
+exec_always --no-startup-id polybar.local &
 exec --no-startup-id udiskie --tray &
 exec --no-startup-id xdg-open-server &
 exec --no-startup-id blueberry-tray &

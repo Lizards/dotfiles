@@ -4,3 +4,13 @@
 .config/hexchat
 .config/gtk-3.0/servers
 .config/gtk-3.0/bookmarks
+test.db
+*.log
+celerybeat.pid
+htmlcov/
+.coverage
+.cache
+coverage.xml
+local_settings.py
+*.pyc
+extras/
