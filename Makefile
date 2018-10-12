@@ -33,7 +33,7 @@ dotfiles: ## symlinks .dotfiles in home directory to this location
 	ln -sfn $(CURDIR)/.Xresources.d $(DEST)/.Xresources.d
 
 .PHONY: dotdirs
-dotdirs: ## symlinks subdirectories of .config in home directory to this location (warning: removes existing dirs if found)
+dotdirs: ## symlinks subdirectories of .config in home directory to this location
 	# .config subdirectories, symlinked wholesale
 	# Warns if target exists as a directory
 	mkdir -p $(DEST)/.config
