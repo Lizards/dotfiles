@@ -35,12 +35,21 @@ dotfiles: ## symlinks .dotfiles in home directory to this location
 .PHONY: dotdirs
 dotdirs: ## symlinks subdirectories of .config in home directory to this location (warning: removes existing dirs if found)
 	# .config subdirectories, symlinked wholesale
+	# Warns if target exists as a directory
 	mkdir -p $(DEST)/.config
 	for directory in $(shell find $(CURDIR)/.config -maxdepth 1 -type d -not -path "*/.config"); do \
-		# TODO:  Test if it's already a directory, and if so, ask for confirmation before deleting.
-		d=$$(echo $$directory | sed "s|$(CURDIR)/||"); \
-		rm -rf $(DEST)/$$d; \
-		ln -sfn $$directory $(DEST)/$$d; \
+		dir_source=$$(echo $$directory | sed "s|$(CURDIR)/||"); \
+		dir_dest="$(DEST)/$${dir_source}"; \
+		CONTINUE='y'; \
+		if [ ! -L $$dir_dest ] && [ -d $$dir_dest ]; then \
+			unset CONTINUE; \
+			while [ -z "$$CONTINUE" ]; do \
+				read -r -p "Directory $${dir_dest} exists. Delete and create symlink? [y/N]: " CONTINUE; \
+			done; \
+		fi; \
+		[ $$CONTINUE = "y" ] || [ $$CONTINUE = "Y" ] || continue; \
+		rm -rf $$dir_dest; \
+		ln -sfn $$directory $$dir_dest; \
 	done
 
 .PHONY: etc
