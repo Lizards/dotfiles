@@ -49,7 +49,12 @@ etc: ## Installs /etc files (lxdm)
 
 .PHONY: usr
 usr: ## Installs /usr files (gtk overrides)
-	sudo cp -R $(CURDIR)/usr/share/themes/SolArc-Dark/gtk-3.0/* /usr/share/themes/SolArc-Dark/gtk-3.0/
+	# this is dumb and I hate it
+	gtk_css='/usr/share/themes/SolArc-Dark/gtk-3.0/gtk.css'; \
+	if [ ! -f "$${gtk_css}.orig" ]; then \
+		sudo cp $$gtk_css $$gtk_css.orig; \
+	fi; \
+	sudo sed -i 's/657b83/cbd5d8/g' $$gtk_css
 
 .PHONY: help
 help:
