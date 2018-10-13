@@ -323,6 +323,7 @@ for_window [class="KeePass2"] floating enable border normal
 for_window [class="Wicd"] floating enable border normal
 for_window [class="Dconf-editor"] floating enable
 for_window [class="Blueberry"] floating enable border normal
+for_window [instance="crx_gaedmjdfmmahhbjefcbgaolhhanlaolb"] floating enable
 
 # audio controls
 bindsym XF86AudioRaiseVolume exec amixer set Master 5%+ && cvlc --no-one-instance --play-and-exit /usr/share/sounds/gnome/default/alerts/drip.ogg # increase sound volume
