@@ -3,7 +3,7 @@ Assumes system was bootstrapped using [my Arch bootstrap scripts](https://github
 Installation: it's just a bunch of symlinks
 
 ```
-$ git clone https://github.com/Lizards/dotfiles
+$ git clone --recurse-submodules https://github.com/Lizards/dotfiles 
 $ cd dotfiles
 $ make
 ```
