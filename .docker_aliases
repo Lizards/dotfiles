@@ -233,7 +233,6 @@ function mysql-workbench {
     docker run --rm --detach --name $name \
         "${X11_COOKIE_OPTS[@]}" \
         "${DBUS_OPTS[@]}" \
-        "${GTK_OPTS[@]//USER/$user}" \
         -v "${HOME}/.mysql-workbench/workbench:/home/${user}/.mysql/workbench" \
         -v "${HOME}/.mysql-workbench/workspace:/home/${user}/workspace" \
         --link mysql-server \
