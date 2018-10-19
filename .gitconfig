@@ -2,7 +2,7 @@
         name = Lizards
         email = amanda@smart.net
 [credential]
-        helper = cache --timeout=6000
+	helper = cache
 [core]
         editor = vim
         excludesfile = ~/.gitignore
