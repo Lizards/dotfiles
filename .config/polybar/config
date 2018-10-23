@@ -107,7 +107,28 @@ tray-padding = 2
 ;tray-background = #0063ff
 
 ;---------------------------------------
-;       LENOVO LAPTOP SCREEN BAR
+;       X1 CARBON LAPTOP SCREEN BAR
+;---------------------------------------
+[bar/x1internal]
+inherit = bar/base
+monitor = ${env:MONITOR:eDP1}
+modules-left = i3 xwindow
+modules-center = 
+modules-right = cpu temperature volume xbacklight wlan eth battery date utcdate
+tray-position = right
+tray-padding = 2
+
+[bar/x1external]
+inherit = bar/base
+monitor = ${env:MONITOR:HDMI1}
+modules-left = i3 xwindow
+modules-center = 
+modules-right = cpu temperature volume wlan eth battery date utcdate
+tray-position = right
+tray-padding = 2
+
+;---------------------------------------
+;       W540 LAPTOP SCREEN BAR
 ;---------------------------------------
 [bar/w540internal]
 inherit = bar/base
