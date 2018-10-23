@@ -1,6 +1,9 @@
 {
 	"color_scheme": "Packages/Neon Color Scheme/Neon.tmTheme",
 	"dpi_scale": 2.0,
+	"folder_exclude_patterns": [
+		"node_modules"
+	],
 	"font_face": "Cousine",
 	"font_size": 9.5,
 	"ignored_packages":
