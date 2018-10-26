@@ -128,6 +128,7 @@ URxvt.secondaryWheel:   1
 URxvt.perl-ext-common:      default,matcher,selection-to-clipboard,clipboard
 URxvt.url-launcher:         /usr/bin/xdg-open
 URxvt.matcher.button:       1
+URxvt.url-select.button:    2
 URxvt.url-select.underline: true
 
 !! copy/paste
