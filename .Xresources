@@ -156,3 +156,4 @@ URxvt*dynamicColors: on
 URxvt.intensityStyles: false
 
 #include ".Xresources.d/i3"
+#include ".Xresources.d/rofi"
