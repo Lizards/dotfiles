@@ -1,4 +1,4 @@
-Assumes system was bootstrapped using [my Arch bootstrap scripts](https://github.com/Lizards/arch-bootstrap).
+Assumes system was bootstrapped using [my Arch installer scripts](https://github.com/Lizards/arch-installer).
 
 Installation: it's just a bunch of symlinks
 
