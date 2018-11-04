@@ -287,8 +287,8 @@ exec --no-startup-id udiskie --tray &
 exec --no-startup-id xdg-open-server &
 exec --no-startup-id blueberry-tray &
 
-# Default splitv, custom on some workspaces
-default_orientation vertical
+# Default split-h, custom on some workspaces
+default_orientation horizontal
 workspace_layout default
 
 # Unity style workspace switching
