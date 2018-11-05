@@ -322,6 +322,7 @@ for_window [class="KeePass2"] floating enable border normal
 for_window [class="Wicd"] floating enable border normal
 for_window [class="Dconf-editor"] floating enable
 for_window [class="Blueberry"] floating enable border normal
+for_window [class="Pavucontrol"] floating enable border normal
 for_window [instance="crx_gaedmjdfmmahhbjefcbgaolhhanlaolb"] floating enable
 
 # audio controls
