@@ -326,8 +326,8 @@ for_window [class="Pavucontrol"] floating enable border normal
 for_window [instance="crx_gaedmjdfmmahhbjefcbgaolhhanlaolb"] floating enable
 
 # audio controls
-bindsym XF86AudioRaiseVolume exec amixer set Master 5%+ && cvlc --no-one-instance --play-and-exit $HOME/dotfiles/media/sounds/drip.ogg # increase sound volume
-bindsym XF86AudioLowerVolume exec amixer set Master 5%- && cvlc --no-one-instance --play-and-exit $HOME/dotfiles/media/sounds/drip.ogg # decrease sound volume
+bindsym XF86AudioRaiseVolume exec amixer set Master 5%+ && paplay $HOME/dotfiles/media/sounds/drip.ogg # increase sound volume
+bindsym XF86AudioLowerVolume exec amixer set Master 5%- && paplay $HOME/dotfiles/media/sounds/drip.ogg # decrease sound volume
 bindsym XF86AudioMute exec amixer set Master 1+ toggle # mute sound
 bindsym XF86AudioMicMute exec amixer set Capture toggle # mute mic
 
