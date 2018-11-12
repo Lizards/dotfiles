@@ -321,7 +321,7 @@ for_window [class="Gimp"] floating enable
 for_window [class="KeePass2"] floating enable border normal
 for_window [class="Wicd"] floating enable border normal
 for_window [class="Dconf-editor"] floating enable
-for_window [class="Blueberry"] floating enable border normal
+for_window [class="Blueberry"] floating enable border normal, resize set 1000 700, move position center
 for_window [class="Pavucontrol"] floating enable border normal
 for_window [instance="crx_gaedmjdfmmahhbjefcbgaolhhanlaolb"] floating enable
 
