@@ -114,7 +114,7 @@ inherit = bar/base
 monitor = ${env:MONITOR:eDP1}
 modules-left = i3 xwindow
 modules-center = 
-modules-right = cpu temperature volume xbacklight wlan eth battery date utcdate
+modules-right = cpu temperature volume xbacklight vpn wlan eth battery date utcdate
 tray-position = right
 tray-padding = 2
 
@@ -123,7 +123,7 @@ inherit = bar/base
 monitor = ${env:MONITOR:HDMI1}
 modules-left = i3 xwindow
 modules-center = 
-modules-right = cpu temperature volume wlan eth battery date utcdate
+modules-right = cpu temperature volume vpn wlan eth battery date utcdate
 tray-position = right
 tray-padding = 2
 
@@ -449,6 +449,19 @@ interval = 2
 ; Command to be executed (using "/usr/bin/env sh -c [command]")
 exec = date --utc +'%H:%M %Z'
 label = %output%
+
+;---------------------------------------
+;      VPN STATUS MODULE
+;---------------------------------------
+[module/vpn]
+type = custom/script
+interval = 15
+
+label = %output%
+label-foreground = ${colors.highlight-cool}
+
+exec-if = pgrep -x openvpn
+exec = pgrep -x openvpn >/dev/null && printf " VPN"
 
 ;---------------------------------------
 ;	   UNUSED MODULES
