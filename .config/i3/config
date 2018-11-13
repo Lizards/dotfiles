@@ -324,6 +324,7 @@ for_window [class="Dconf-editor"] floating enable
 for_window [class="Blueberry"] floating enable border normal, resize set 1000 700, move position center
 for_window [class="Pavucontrol"] floating enable border normal
 for_window [instance="crx_gaedmjdfmmahhbjefcbgaolhhanlaolb"] floating enable
+for_window [class="Mysql-workbench-bin" title="Connect to Database"] floating enable, resize set 1500 800
 
 # audio controls
 bindsym XF86AudioRaiseVolume exec amixer set Master 5%+ && paplay $HOME/dotfiles/media/sounds/drip.ogg # increase sound volume
