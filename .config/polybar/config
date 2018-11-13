@@ -112,7 +112,7 @@ tray-padding = 2
 [bar/x1internal]
 inherit = bar/base
 monitor = ${env:MONITOR:eDP1}
-modules-left = i3 xwindow
+modules-left = i3 xwindow-custom
 modules-center = 
 modules-right = cpu temperature volume xbacklight vpn wlan eth battery date utcdate
 tray-position = right
@@ -154,6 +154,12 @@ tray-padding = 2
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:140:...%
+format-foreground = ${colors.foreground-alt}
+format-padding = 0
+
+[module/xwindow-custom]
+type = internal/xwindow
+label = ${env:POLYBAR_XWINDOW_LABEL:%title:0:140:...%}
 format-foreground = ${colors.foreground-alt}
 format-padding = 0
 
