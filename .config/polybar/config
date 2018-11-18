@@ -387,7 +387,7 @@ bar-volume-empty-foreground = ${colors.slider-bar-bg}
 type = internal/battery
 battery = BAT0
 adapter = AC
-full-at = 95
+full-at = ${env:POLYBAR_BATTERY_FULL_AT:98}
 
 format-charging = <animation-charging> <label-charging>
 format-charging-underline = ${colors.highlight-cool}
