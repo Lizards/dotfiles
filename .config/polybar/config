@@ -280,22 +280,23 @@ interface = ${env:POLYBAR_WLAN_INTERFACE}
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-;format-connected-underline = #9f78e1
-label-connected = %signal%% at %essid%
+label-connected = %signal%%
+; at %essid%
 
 format-disconnected = <label-disconnected>
 label-disconnected = 
 format-disconnected-underline = ${colors.highlight-warm}
 label-disconnected-foreground = ${colors.highlight-warm}
 
+format-packetloss = <animation-packetloss> <label-connected>
+
 ramp-signal-0 = 😱
 ramp-signal-1 = 
-;ramp-signal-foreground = ${colors.foreground-alt}
 
 ; Only applies if <animation-packetloss> is used
 animation-packetloss-0 = ⚠
 animation-packetloss-0-foreground = ${colors.highlight-warm}
-animation-packetloss-1 = ⚠
+animation-packetloss-1 = 
 animation-packetloss-1-foreground = ${colors.highlight-warm}
 ; Framerate in milliseconds
 animation-packetloss-framerate = 500
