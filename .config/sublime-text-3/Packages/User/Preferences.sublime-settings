@@ -13,7 +13,7 @@
 		"node_modules"
 	],
 	"font_face": "Cousine",
-	"font_size": 9.5,
+	"font_size": 9,
 	"ignored_packages":
 	[
 		"Vintage"
