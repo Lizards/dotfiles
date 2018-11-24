@@ -1,7 +1,7 @@
 !! i3 vars
 
-i3.DOCKER-SPOTIFY-W: 2800
-i3.DOCKER-SPOTIFY-H: 1500
+i3.DOCKER-SPOTIFY-W: 2460
+i3.DOCKER-SPOTIFY-H: 1300
 
 i3.green:           S_brgreen
 i3.blue:            S_brblue
