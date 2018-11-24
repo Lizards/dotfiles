@@ -14,5 +14,4 @@ else
 fi
 
 xcalib -a -s 0 -c
-xcalib -a -s 0 -red 1.0 0 95 -green 1.0 0 95 -blue 1.0 4 100
-
+xcalib -a -s 0 -red 1.1 0 100 -green 1.1 0 94 -blue 1.0 0 100
