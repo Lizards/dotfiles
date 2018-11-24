@@ -1,7 +1,7 @@
 DEST    = $(HOME)
 
 .PHONY: all
-all: bin dotfiles dotdirs etc usr ## Installs everything
+all: bin dotfiles dotdirs etc usr root ## Installs everything
 
 .PHONY: bin
 bin: ## symlinks everything in bin/ in /usr/local/bin
@@ -13,7 +13,7 @@ bin: ## symlinks everything in bin/ in /usr/local/bin
 .PHONY: dotfiles
 dotfiles: ## symlinks .dotfiles in home directory to this location
 	# .dotfiles first, excluding git stuff and those found in .config/ and submodules/
-	for file in $(shell find $(CURDIR) -type f -name ".*" -not -path "*/.config/*" -not -path "*/submodules/*" -not -name ".git*" -not -name "*.swp"); do \
+	for file in $(shell find $(CURDIR) -type f -name ".*" -not -path "*/.config/*" -not -path "*/root/*" -not -path "*/submodules/*" -not -name ".git*" -not -name "*.swp"); do \
 		f=$$(basename $$file); \
 		ln -sfn $$file $(DEST)/$$f; \
 	done;
@@ -53,17 +53,24 @@ dotdirs: ## symlinks subdirectories of .config in home directory to this locatio
 	done
 
 .PHONY: etc
-etc: ## Installs /etc files (lxdm)
+etc: ## Installs /etc files
+	# lxdm
 	sudo cp -R $(CURDIR)/etc/lxdm/* /etc/lxdm/
 
 .PHONY: usr
-usr: ## Installs /usr files (gtk overrides)
-	# this is dumb and I hate it
+usr: ## Installs /usr files
+	# gtk override: this is dumb and I hate it
 	gtk_css='/usr/share/themes/SolArc-Dark/gtk-3.0/gtk.css'; \
 	if [ ! -f "$${gtk_css}.orig" ]; then \
 		sudo cp $$gtk_css $$gtk_css.orig; \
 	fi; \
 	sudo sed -i 's/657b83/cbd5d8/g' $$gtk_css
+	# Bash color vars
+	sudo install -Dm0755 $(CURDIR)/usr/local/lib/bash_colors.sh /usr/local/lib/bash_colors.sh
+
+.PHONY: root
+root: ## Installs root's dotfiles
+	sudo cp -R $(CURDIR)/root/. /root
 
 .PHONY: help
 help:
