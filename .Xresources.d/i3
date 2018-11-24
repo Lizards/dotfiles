@@ -1,3 +1,24 @@
 !! i3 vars
+
 i3.DOCKER-SPOTIFY-W: 3700
 i3.DOCKER-SPOTIFY-H: 2000
+
+i3.yellow:  S_yellow
+i3.orange:  S_orange
+i3.red:     S_red
+i3.magenta: S_magenta
+i3.violet:  S_violet
+i3.blue:    S_blue
+i3.cyan:    S_cyan
+i3.green:   S_green
+
+i3.base03:  S_base03
+i3.base02:  S_base02
+i3.base01:  S_base01
+i3.base00:  S_base00
+i3.base0:   S_base0
+i3.base1:   S_base1
+i3.base2:   S_base2
+i3.base3:   S_base3
+i3.focus:  #1f7771
+
