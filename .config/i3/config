@@ -176,7 +176,7 @@ assign [class="Chromium"] $workspace1
 assign [class="Sublime_text"] $workspace2
 assign [class="Hexchat"] $workspace3
 assign [class="Slack"] $workspace3
-assign [class="Firefox"] $workspace8
+assign [class="Mysql-workbench"] $workspace8
 assign [class="VirtualBox"] $workspace10
 # Spotify is difficult
 # https://github.com/i3/i3/issues/2060#issuecomment-155179472
