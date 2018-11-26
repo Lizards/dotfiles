@@ -57,6 +57,10 @@ etc: ## Installs /etc files
 	# lxdm
 	sudo cp -R $(CURDIR)/etc/lxdm/* /etc/lxdm/
 
+.PHONY: root
+root: ## Installs root's dotfiles
+	sudo cp -R $(CURDIR)/root/. /root
+
 .PHONY: usr
 usr: ## Installs /usr files
 	# gtk override: this is dumb and I hate it
@@ -65,12 +69,11 @@ usr: ## Installs /usr files
 		sudo cp $$gtk_css $$gtk_css.orig; \
 	fi; \
 	sudo sed -i 's/657b83/cbd5d8/g' $$gtk_css
-	# Bash color vars
-	sudo install -Dm0755 $(CURDIR)/usr/local/lib/bash_colors.sh /usr/local/lib/bash_colors.sh
-
-.PHONY: root
-root: ## Installs root's dotfiles
-	sudo cp -R $(CURDIR)/root/. /root
+	# symlinks everything in lib/ in /usr/local/lib
+	for file in $(shell find $(CURDIR)/lib -type f -not -name ".*"); do \
+		f=$$(basename $$file); \
+		sudo ln -sf $$file /usr/local/lib/$$f; \
+	done
 
 .PHONY: help
 help:
