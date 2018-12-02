@@ -4,7 +4,9 @@
 # Don't follow includes:
 # shellcheck source=/dev/null
 
-. "${HOME}/.private_aliases"
+if [ -e "${HOME}/.private_aliases" ]; then
+    . "${HOME}/.private_aliases"
+fi
 . "${HOME}/.docker_aliases"
 
 alias http="python -m http.server 8888"
