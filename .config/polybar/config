@@ -100,7 +100,7 @@ inherit = bar/base
 monitor = ${env:MONITOR:DP-3}
 modules-left = i3 xwindow
 modules-center = 
-modules-right = cpu temperature volume wlan eth date utcdate
+modules-right = cpu temperature volume vpn wlan eth date utcdate
 tray-position = right
 tray-padding = 2
 ;tray-transparent = true
@@ -135,7 +135,7 @@ inherit = bar/base
 monitor = ${env:MONITOR:eDP1}
 modules-left = i3 xwindow
 modules-center = 
-modules-right = cpu temperature volume xbacklight wlan eth battery date utcdate
+modules-right = cpu temperature volume xbacklight vpn wlan eth battery date utcdate
 tray-position = right
 tray-padding = 2
 
@@ -144,7 +144,7 @@ inherit = bar/base
 monitor = ${env:MONITOR:DP1}
 modules-left = i3 xwindow
 modules-center = 
-modules-right = cpu temperature volume wlan eth battery date utcdate
+modules-right = cpu temperature volume vpn wlan eth battery date utcdate
 tray-position = right
 tray-padding = 2
 
