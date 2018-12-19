@@ -19,6 +19,7 @@ alias xsel='xsel --clipboard'
 alias please='sudo $(history -p \!\!)'
 alias back='cd $OLDPWD'
 alias owns='pacman -Qo'
+alias trackpadfix='sudo modprobe -r psmouse && sudo modprobe psmouse'
 
 function ec2list() {
     auth-aws "${1}"
