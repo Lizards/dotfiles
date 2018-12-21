@@ -291,8 +291,7 @@ label-disconnected-foreground = ${colors.highlight-warm}
 
 format-packetloss = <animation-packetloss> <label-connected>
 
-ramp-signal-0 = 😱
-ramp-signal-1 = 
+ramp-signal-0 = 
 
 ; Only applies if <animation-packetloss> is used
 animation-packetloss-0 = ⚠
