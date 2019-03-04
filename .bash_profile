@@ -5,3 +5,4 @@
 # shellcheck source=/dev/null
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
+[[ -f ~/.profile ]] && . ~/.profile
