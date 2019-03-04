@@ -33,23 +33,22 @@ dotfiles: ## symlinks .dotfiles in home directory to this location
 	ln -sfn $(CURDIR)/.Xresources.d $(DEST)/.Xresources.d
 
 .PHONY: dotdirs
-dotdirs: ## symlinks subdirectories of .config in home directory to this location
-	# .config subdirectories, symlinked wholesale
-	# Warns if target exists as a directory
+dotdirs: ## symlinks subdirectories and files in ~/.config to this location
+	# Warns if target exists
 	mkdir -p $(DEST)/.config
-	for directory in $(shell find $(CURDIR)/.config -maxdepth 1 -type d -not -path "*/.config"); do \
-		dir_source=$$(echo $$directory | sed "s|$(CURDIR)/||"); \
-		dir_dest="$(DEST)/$${dir_source}"; \
+	for target in $(shell find $(CURDIR)/.config -maxdepth 1 -not -path "*/.config"); do \
+		target_source=$$(echo $$target | sed "s|$(CURDIR)/||"); \
+		target_dest="$(DEST)/$${target_source}"; \
 		CONTINUE='y'; \
-		if [ ! -L $$dir_dest ] && [ -d $$dir_dest ]; then \
+		if [ ! -L $$target_dest ]; then \
 			unset CONTINUE; \
 			while [ -z "$$CONTINUE" ]; do \
-				read -r -p "Directory $${dir_dest} exists. Delete and create symlink? [y/N]: " CONTINUE; \
+				read -r -p "$${target_dest} exists. Delete and create symlink? [y/N]: " CONTINUE; \
 			done; \
 		fi; \
 		[ $$CONTINUE = "y" ] || [ $$CONTINUE = "Y" ] || continue; \
-		rm -rf $$dir_dest; \
-		ln -sfn $$directory $$dir_dest; \
+		rm -rf $$target_dest; \
+		ln -sfn $$target $$target_dest; \
 	done
 
 .PHONY: etc
