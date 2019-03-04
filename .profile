@@ -1,13 +1,12 @@
 #!/bin/bash
 
-VISUAL="vim"
-export VISUAL
-EDITOR="/bin/vi -e"
-export EDITOR
+export VISUAL="/bin/vim"
+export EDITOR="/bin/vi -e"
+export SYSTEMD_EDITOR="${VISUAL}"
 
 export HISTSIZE=500000
 export HISTFILESIZE=$HISTSIZE
-export HISTCONTROL=ignoredups
+export HISTCONTROL="ignoredups"
 
 export POLYBAR_BARS="left right"
 export POLYBAR_WLAN_INTERFACE="wlp5s0"
