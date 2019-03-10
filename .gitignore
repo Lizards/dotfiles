@@ -1,6 +1,6 @@
 *.diff
 .private_aliases
-.config/sublime-text-3
+.config/Code - OSS
 .config/hexchat
 .config/gtk-3.0/servers
 .config/gtk-3.0/bookmarks

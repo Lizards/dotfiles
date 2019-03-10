@@ -1,0 +1,35 @@
+{
+    "autoDocstring.docstringFormat": "google",
+    "breadcrumbs.enabled": true,
+    "editor.fontFamily": "'Cousine'",
+    "editor.fontSize": 14,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": false,
+    "editor.formatOnType": false,
+    "editor.renderFinalNewline": true,
+    "editor.rulers": [110],
+    "editor.trimAutoWhitespace": true,
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.git": true,
+        "**/*.pyc": true,
+        "**/.pytest_cache": true
+    },
+    "files.trimFinalNewlines": false,
+    "files.trimTrailingWhitespace": true,
+    "git.autofetch": false,
+    "git.confirmSync": true,
+    "python.linting.lintOnSave": false,
+    "python.linting.pep8Args": [
+        "--ignore=E501"
+    ],
+    "python.linting.pep8Enabled": true,
+    "vs-kubernetes": {
+        "disable-linters": [
+            "resource-limits"
+        ]
+    },
+    "window.zoomLevel": -1.5,
+    "yaml.format.enable": true,
+    "workbench.colorTheme": "Dracula At Night"
+}

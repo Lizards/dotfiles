@@ -112,7 +112,7 @@ bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
 # switch to workspace
-bindsym $mod+1 workspace $workspace1
+bindsym $mod+1 workspace $workspace1; layout tabbed
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3; layout tabbed
 bindsym $mod+4 workspace $workspace4
@@ -173,7 +173,7 @@ set $workspace10 "10"
 
 # Assign applications to workspaces
 assign [class="Chromium"] $workspace1
-assign [class="Sublime_text"] $workspace2
+assign [class="code-oss"] $workspace2
 assign [class="Hexchat"] $workspace3
 assign [class="Slack"] $workspace3
 assign [class="Signal"] $workspace3

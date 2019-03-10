@@ -36,20 +36,21 @@ dotfiles: ## symlinks .dotfiles in home directory to this location
 dotdirs: ## symlinks subdirectories and files in ~/.config to this location
 	# Warns if target exists
 	mkdir -p $(DEST)/.config
-	for target in $(shell find $(CURDIR)/.config -maxdepth 1 -not -path "*/.config"); do \
-		target_source=$$(echo $$target | sed "s|$(CURDIR)/||"); \
-		target_dest="$(DEST)/$${target_source}"; \
-		CONTINUE='y'; \
-		if [ ! -L $$target_dest ]; then \
-			unset CONTINUE; \
-			while [ -z "$$CONTINUE" ]; do \
-				read -r -p "$${target_dest} exists. Delete and create symlink? [y/N]: " CONTINUE; \
-			done; \
-		fi; \
-		[ $$CONTINUE = "y" ] || [ $$CONTINUE = "Y" ] || continue; \
-		rm -rf $$target_dest; \
-		ln -sfn $$target $$target_dest; \
-	done
+	find "$(CURDIR)/.config" -maxdepth 1 -not -path "*/.config" -print0 | \
+		while IFS= read -r -d '' target; do \
+			target_source="$$(echo $${target} | sed 's|$(CURDIR)/||')"; \
+			target_dest="$(DEST)/$${target_source}"; \
+			CONTINUE='y'; \
+			if [ -e "$${target_dest}" ] && [ ! -L "$${target_dest}" ]; then \
+				unset CONTINUE; \
+				while [ -z "$${CONTINUE}" ]; do \
+					read -r -p "$${target_dest} exists. Delete and create symlink? [y/N]: " CONTINUE </dev/tty; \
+				done; \
+			fi; \
+			[[ "$${CONTINUE}" == [nN]* ]] && continue; \
+			rm -rf "$${target_dest}"; \
+			ln -sfn "$${target}" "$${target_dest}"; \
+		done;
 
 .PHONY: etc
 etc: ## Installs /etc files
