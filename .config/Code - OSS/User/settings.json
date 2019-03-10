@@ -7,18 +7,24 @@
     "editor.formatOnSave": false,
     "editor.formatOnType": false,
     "editor.renderFinalNewline": true,
-    "editor.rulers": [110],
+    "editor.rulers": [
+        110
+    ],
     "editor.trimAutoWhitespace": true,
     "files.exclude": {
-        "**/__pycache__": true,
-        "**/.git": true,
         "**/*.pyc": true,
-        "**/.pytest_cache": true
+        "**/.git": true,
+        "**/.pytest_cache": true,
+        "**/__pycache__": true,
+        "**/node_modules": true
     },
     "files.trimFinalNewlines": false,
     "files.trimTrailingWhitespace": true,
     "git.autofetch": false,
     "git.confirmSync": true,
+    "gitlens.codeLens.enabled": false,
+    "gitlens.currentLine.enabled": false,
+    "gitlens.statusBar.reduceFlicker": true,
     "python.linting.lintOnSave": false,
     "python.linting.pep8Args": [
         "--ignore=E501"
@@ -30,6 +36,6 @@
         ]
     },
     "window.zoomLevel": -1.5,
-    "yaml.format.enable": true,
-    "workbench.colorTheme": "Dracula At Night"
+    "workbench.colorTheme": "Dracula At Night",
+    "yaml.format.enable": true
 }
