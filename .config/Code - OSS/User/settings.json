@@ -1,11 +1,9 @@
 {
     "autoDocstring.docstringFormat": "google",
     "breadcrumbs.enabled": true,
+    "diffEditor.ignoreTrimWhitespace": true,
     "editor.fontFamily": "'Cousine'",
     "editor.fontSize": 14,
-    "editor.formatOnPaste": true,
-    "editor.formatOnSave": false,
-    "editor.formatOnType": false,
     "editor.renderFinalNewline": true,
     "editor.rulers": [
         110
