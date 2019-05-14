@@ -173,10 +173,10 @@ set $workspace10 "10"
 
 # Assign applications to workspaces
 assign [class="Chromium"] $workspace1
+assign [class="Signal"] $workspace1
 assign [class="code-oss"] $workspace2
 assign [class="Hexchat"] $workspace3
 assign [class="Slack"] $workspace3
-assign [class="Signal"] $workspace3
 assign [class="Mysql-workbench"] $workspace8
 assign [class="VirtualBox"] $workspace10
 # Spotify is difficult
