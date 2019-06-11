@@ -11,6 +11,7 @@ fi
 
 alias http="python -m http.server 8888"
 alias vi='vim'
+alias diff='diff --color=auto'
 alias tcpwatch="sudo tcpflow -p -c -i eth0 port 80 | grep -oE '(GET|POST|HEAD) .* HTTP/1.[01]|Host: .*'"
 alias pycleanup='find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf'
 alias rs='python manage.py runserver'
@@ -22,6 +23,8 @@ alias back='cd $OLDPWD'
 alias owns='pacman -Qo'
 alias trackpadfix='sudo modprobe -r psmouse && sudo modprobe psmouse'
 alias makepkg-sha256sums='makepkg -g -f -p PKGBUILD'
+alias aur-prep="makepkg-sha256sums && makepkg --printsrcinfo > .SRCINFO"
+
 
 function ec2list() {
     auth-aws "${1}"
