@@ -8,12 +8,12 @@ rofi.modi:          combi
 rofi.color-enabled: true
 
 ! Property Name     BG       Border   Separator
-rofi.color-window:  S_base02, S_base02, S_base03
+rofi.color-window:  S_brblack, S_brblack, S_black
 
-! Property Name     BG       FG       BG-alt   Head-BG  Head-FG
-rofi.color-normal:  S_base02, S_base1, S_base02, S_yellow, S_base3
-rofi.color-active:  S_base02, S_blue, S_base02, S_blue, S_base3
-rofi.color-urgent:  S_base02, S_red, S_base02, S_base02, S_red
+! Property Name     BG         FG       BG-alt      Head-BG      Head-FG
+rofi.color-normal:  S_brblack, S_white, S_brblack,  S_brgreen,   S_black
+rofi.color-active:  S_brblack, S_blue,  S_brblack,  S_blue,      S_black
+rofi.color-urgent:  S_brblack, S_red,   S_brblack,  S_brblack,   S_red
 
 ! Set the desired separator style
 rofi.separator-style: solid

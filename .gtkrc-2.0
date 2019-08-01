@@ -2,7 +2,7 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "/home/amanda/.gtkrc-2.0.mine"
-gtk-theme-name="SolArc-Dark"
+gtk-theme-name="lovelace"
 gtk-icon-theme-name="Arc"
 gtk-font-name="Ubuntu 8"
 gtk-cursor-theme-name="Adwaita"

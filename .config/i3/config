@@ -173,7 +173,7 @@ set $workspace10 "10"
 
 # Assign applications to workspaces
 assign [class="Chromium"] $workspace1
-assign [class="Signal"] $workspace1
+assign [class="Signal"] $workspace3
 assign [class="code-oss"] $workspace2
 assign [class="Hexchat"] $workspace3
 assign [class="Slack"] $workspace3
@@ -220,7 +220,7 @@ exec_always --no-startup-id feh --bg-scale $HOME/dotfiles/media/wallpapers/wallp
 
 # fonts
 font pango:monospace 8
-font pango:Ubuntu, FontAwesome Bold 8
+font pango:Ubuntu Mono, FontAwesome Bold 8
 
 # window style
 new_window pixel 1
@@ -228,30 +228,21 @@ new_float normal
 hide_edge_borders both
 
 # colors from .Xresources
-set_from_resource $yellow  i3.yellow     #ffff00
-set_from_resource $orange  i3.orange     #ff7700
-set_from_resource $red     i3.red        #ff0000
-set_from_resource $magenta i3.magenta    #ff00bb
-set_from_resource $violet  i3.violet     #8800ff
-set_from_resource $blue    i3.blue       #0000ff
-set_from_resource $cyan    i3.cyan       #00ffff
-set_from_resource $green   i3.green      #00cc00
-
-set_from_resource $base03  i3.base03     #ffffff
-set_from_resource $base02  i3.base02     #ffffff
-set_from_resource $base01  i3.base01     #ffffff
-set_from_resource $base00  i3.base00     #ffffff
-set_from_resource $base0   i3.base0      #000000
-set_from_resource $base1   i3.base1      #000000
-set_from_resource $base2   i3.base2      #000000
-set_from_resource $base3   i3.base3      #000000
-set_from_resource $focus   i3.focus      #0088ff
+set_from_resource $border   i3.border     #ffffff
+set_from_resource $focus    i3.focus      #0088ff
+set_from_resource $urgent   i3.urgent     #0088ff
+set_from_resource $blue     i3.blue       #0088ff
+set_from_resource $violet   i3.violet     #0088ff
+set_from_resource $green    i3.green      #0088ff
+set_from_resource $red      i3.red        #0088ff
+set_from_resource $text1    i3.text1      #0088ff
+set_from_resource $text2    i3.text2      #0088ff
 
 # clientclass                border  backgr. text    indicator child_border
-client.focused               $base03 $focus  $base3  $blue     $focus
-client.focused_inactive      $base03 $focus  $base3  $violet   $base03
-client.unfocused             $base03 $base02 $base1  $base01   $base03
-client.urgent                $orange $orange $base3  $red      $orange
+client.focused               $border $focus  $text1  $blue     $focus
+client.focused_inactive      $border $focus  $text1  $violet   $border
+client.unfocused             $border $border $text2  $green    $border
+client.urgent                $urgent $urgent $text1  $red      $urgent
 
 
 ##########################

@@ -27,17 +27,19 @@ margin-bottom = 5
 ;	   COLORS
 ;---------------------------------------
 [colors]
-background = ${xrdb:color0:#f00}
-background-alt = ${xrdb:color8:#0f0}
-foreground = ${xrdb:color7:#ff0}
-foreground-alt = ${xrdb:color12:#f00}
+background = ${xrdb:pb.background:#f00}
+background-alt = ${xrdb:pb.background-alt:#0f0}
+foreground = ${xrdb:pb.foreground:#ff0}
+foreground-alt = ${xrdb:pb.foreground-alt:#f00}
+title = ${xrdb:pb.title:#fff}
 slider-bar-bg = #555
-primary = #ffb52a
-secondary = ${xrdb:color5:#e60053}
-alert = ${xrdb:color9:#bd2c40}
-highlight-cool = ${xrdb:color2:#0f0}
-highlight-warm = ${xrdb:color9:#0f0}
-warning = ${xrdb:color3:#0f0}
+primary = ${xrdb:pb.primary:#e6ffb52a0053}
+secondary = ${xrdb:pb.secondary:#e60053}
+alert = ${xrdb:pb.alert:#bd2c40}
+highlight-cool = ${xrdb:pb.cool:#0f0}
+highlight-warm = ${xrdb:pb.warm:#0f0}
+warning = ${xrdb:pb.warning:#0f0}
+border = ${xrdb:pb.border:#000}
 
 ;---------------------------------------
 ;	   BAR DEFAULTS
@@ -58,7 +60,7 @@ line-size = 3
 line-color = #f00
 
 border-bottom-size = 4
-border-color = #00000000
+border-color = ${colors.border}
 
 padding-left = 0
 padding-right = 2
@@ -92,14 +94,14 @@ font-2 = "Ubuntu:fontformat=truetype;pixelsize=10;1"
 inherit = bar/base
 monitor = ${env:MONITOR:DP-2}
 modules-left = i3 xwindow
-modules-center = 
+modules-center =
 modules-right = date utcdate
 
 [bar/right]
 inherit = bar/base
 monitor = ${env:MONITOR:DP-3}
 modules-left = i3 xwindow
-modules-center = 
+modules-center =
 modules-right = cpu temperature volume vpn wlan eth date utcdate
 tray-position = right
 tray-padding = 2
@@ -113,7 +115,7 @@ tray-padding = 2
 inherit = bar/base
 monitor = ${env:MONITOR:eDP1}
 modules-left = i3 xwindow-custom
-modules-center = 
+modules-center =
 modules-right = cpu temperature volume xbacklight vpn wlan eth battery date utcdate
 tray-position = right
 tray-padding = 2
@@ -122,7 +124,7 @@ tray-padding = 2
 inherit = bar/base
 monitor = ${env:MONITOR:HDMI1}
 modules-left = i3 xwindow
-modules-center = 
+modules-center =
 modules-right = cpu temperature volume vpn wlan eth battery date utcdate
 tray-position = right
 tray-padding = 2
@@ -134,7 +136,7 @@ tray-padding = 2
 inherit = bar/base
 monitor = ${env:MONITOR:eDP1}
 modules-left = i3 xwindow
-modules-center = 
+modules-center =
 modules-right = cpu temperature volume xbacklight vpn wlan eth battery date utcdate
 tray-position = right
 tray-padding = 2
@@ -143,7 +145,7 @@ tray-padding = 2
 inherit = bar/base
 monitor = ${env:MONITOR:DP1}
 modules-left = i3 xwindow
-modules-center = 
+modules-center =
 modules-right = cpu temperature volume vpn wlan eth battery date utcdate
 tray-position = right
 tray-padding = 2
@@ -154,13 +156,13 @@ tray-padding = 2
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:140:...%
-format-foreground = ${colors.foreground-alt}
+format-foreground = ${colors.title}
 format-padding = 0
 
 [module/xwindow-custom]
 type = internal/xwindow
 label = ${env:POLYBAR_XWINDOW_LABEL:%title:0:140:...%}
-format-foreground = ${colors.foreground-alt}
+format-foreground = ${colors.title}
 format-padding = 0
 
 
@@ -186,7 +188,7 @@ ws-icon-5 = "10; "
 ;pin-workspaces = true
 
 label-mode-padding = 2
-label-mode-foreground = #000
+label-mode-foreground = ${colors.foreground-alt}
 label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
@@ -199,11 +201,13 @@ label-focused-padding = ${self.padding}
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = ${self.label-fmt}
 label-unfocused-padding = ${self.padding}
+label-unfocused-foreground = ${colors.title}
 
 ; visible = Active workspace on unfocused monitor
 label-visible = ${self.label-fmt}
+label-visible-foreground = ${colors.foreground}
 label-visible-padding = ${self.padding}
-label-visible-underline= ${colors.foreground-alt}
+;label-visible-underline = ${colors.foreground-alt}
 
 ; urgent = Workspace with urgency hint set
 label-urgent = ${self.label-fmt}
@@ -327,7 +331,7 @@ format-disconnected =
 type = internal/date
 interval = 1
 
-date = 
+date =
 date-alt = " %Y-%m-%d"
 
 time = %H:%M:%S

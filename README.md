@@ -7,7 +7,7 @@
 
 Assumes system was bootstrapped using [my Arch installer scripts](https://github.com/Lizards/arch-installer).  For best results, install:
 
-- __GTK theme__: `gtk-theme-solarc-git` (AUR)
+- __GTK theme__: `lovelace` (https://github.com/elenapan/dotfiles/tree/master/misc/gtk/lovelace)
 - __Icons__: `arc-icon-theme`
 - __Fonts__: `ttf-croscore`, `noto-fonts`, `ttf-ubuntu-font-family`, `tamsyn-font`, `ttf-font-awesome-4` (AUR), `ttf-ms-fonts` (AUR), `ttf-mplus` (AUR), `ttf-symbol` (AUR)
 - __Other__: `xdg-open-server` (AUR)
@@ -19,7 +19,7 @@ Assumes system was bootstrapped using [my Arch installer scripts](https://github
 ## Installation
 
 ```
-$ git clone --recurse-submodules https://github.com/Lizards/dotfiles 
+$ git clone --recurse-submodules https://github.com/Lizards/dotfiles
 $ cd dotfiles
 $ make
 ```
