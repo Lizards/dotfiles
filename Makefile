@@ -63,12 +63,6 @@ root: ## Installs root's dotfiles
 
 .PHONY: usr
 usr: ## Installs /usr files
-	# gtk override: this is dumb and I hate it
-	gtk_css='/usr/share/themes/SolArc-Dark/gtk-3.0/gtk.css'; \
-	if [ ! -f "$${gtk_css}.orig" ]; then \
-		sudo cp $$gtk_css $$gtk_css.orig; \
-	fi; \
-	sudo sed -i 's/657b83/cbd5d8/g' $$gtk_css
 	# symlinks everything in lib/ in /usr/local/lib
 	for file in $(shell find $(CURDIR)/lib -type f -not -name ".*"); do \
 		f=$$(basename $$file); \
