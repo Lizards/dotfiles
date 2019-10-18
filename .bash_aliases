@@ -9,6 +9,7 @@ if [ -e "${HOME}/.private_aliases" ]; then
 fi
 . "${HOME}/.docker_aliases"
 
+export KUBE_EDITOR="${VISUAL}"
 alias http="python -m http.server 8888"
 alias vi='vim'
 alias diff='diff --color=auto'
