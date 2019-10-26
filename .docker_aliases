@@ -252,19 +252,15 @@ function memcached {
 }
 
 function grpcui {
-    local name='grpcui'
-    if [ "${1}" == "stop" ]; then
-        docker stop "${name}"
-    else
-        local grpc_service_host="${1:-localhost:8888}"
-        local grpc_ui_port="${2:-8002}"
-        echo -e "Launching grpcui"
-        docker run --rm --detach --name "${name}" \
+    local name="${3:-grpcui}"
+    local grpc_service_host="${1:-localhost:8888}"
+    local grpc_ui_port="${2:-8002}"
+    echo -e "Launching grpcui"
+    docker run --rm --detach --name "${name}" \
         --network host \
         -e GRPCUI_SERVER="${grpc_service_host}" \
         -e GRPCUI_PORT="${grpc_ui_port}" \
         wongnai/grpcui
-    fi
 }
 
 function vlc {
