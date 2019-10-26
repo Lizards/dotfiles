@@ -28,6 +28,7 @@
         "--ignore=E501"
     ],
     "python.linting.pep8Enabled": true,
+    "python.sortImports.args": ["-ns", "__init__.py", "-l", "110"],
     "vs-kubernetes": {
         "disable-linters": [
             "resource-limits"
