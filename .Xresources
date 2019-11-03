@@ -63,7 +63,7 @@
 *depth:                 32
 *fading:                40
 *fadeColor:             S_terminal
-*cursorColor:           S_white
+*cursorColor:           S_green
 *pointerColorBackground:S_brgreen
 *pointerColorForeground:S_brcyan
 
@@ -86,6 +86,7 @@ Xft.antialias:  1
 ! -- URxvt appearance -- !
 URxvt*termName:         rxvt
 URxvt*background:       S_terminal
+URxvt*cursorBlink:      true
 !! enable transparency
 !! URxvt*background:    rgba:0000/0000/0000/cccc
 !! URxvt.transparent:   true
@@ -93,8 +94,8 @@ URxvt*background:       S_terminal
 !! URxvt.shading:       90
 
 !! fonts
-URxvt.font:xft:Ubuntu Mono:style=Regular:size=8
-URxvt.boldFont:xft:Ubuntu Mono:style=Bold:size=8
+URxvt.font:             xft:Ubuntu Mono:size=8
+URxvt.boldFont:         xft:Ubuntu Mono:bold:size=8
 
 !! scroll
 !! do not scroll with output

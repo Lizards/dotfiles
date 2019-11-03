@@ -43,9 +43,11 @@ bash_prompt() {
     local COLOR_USER=$COLOR_GREEN
     local COLOR_HOST=$COLOR_YELLOW
     local COLOR_PATH=$COLOR_BLUE_BOLD
+    local COLOR_PROMPT=${COLOR_GREEN}
 
     if [ "$1" = yes ]; then
-        echo "${COLOR_GIT}\$(__git_ps1 \"(%s) \")${COLOR_USER}\\u@\\h${COLOR_NONE} in ${COLOR_PATH}\\w${COLOR_NONE}\\n$ "
+        # shellcheck disable=SC2028
+        echo "${COLOR_GIT}\$(__git_ps1 \"(%s) \")${COLOR_USER}\\u@\\h${COLOR_NONE} in ${COLOR_PATH}\\w${COLOR_NONE}\\n${COLOR_PROMPT}>>${COLOR_NONE} "
     else
         echo "\$(__git_ps1 \"(%s) \") \\u@\\h:\\w\$ "
     fi
@@ -96,7 +98,7 @@ fi
 
 . "${HOME}/.submodules/git/contrib/completion/git-completion.bash"
 
-eval $(thefuck --alias)
+eval "$(thefuck --alias)"
 
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
