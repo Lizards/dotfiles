@@ -25,6 +25,7 @@ alias owns='pacman -Qo'
 alias trackpadfix='sudo modprobe -r psmouse && sudo modprobe psmouse'
 alias makepkg-sha256sums='makepkg -g -f -p PKGBUILD'
 alias aur-prep="makepkg-sha256sums && makepkg --printsrcinfo > .SRCINFO"
+alias fonts='fc-list | cut -f2 -d: | sort -u'
 
 
 function ec2list() {
