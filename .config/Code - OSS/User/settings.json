@@ -32,7 +32,7 @@
     "workbench.colorTheme": "Dracula At Night",
     "yaml.format.enable": true,
     "vsnotes.defaultNotePath": "/home/amanda/.vsnotes",
-    "editor.fontSize": 14,
+    "editor.fontSize": 13,
     "python.formatting.provider": "black",
     "python.linting.lintOnSave": true,
     "python.linting.enabled": true,
