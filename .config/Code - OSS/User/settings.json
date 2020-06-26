@@ -3,10 +3,9 @@
     "breadcrumbs.enabled": true,
     "diffEditor.ignoreTrimWhitespace": true,
     "editor.fontFamily": "'Cousine'",
-    "editor.fontSize": 14,
     "editor.renderFinalNewline": true,
     "editor.rulers": [
-        110
+        119
     ],
     "editor.trimAutoWhitespace": true,
     "files.exclude": {
@@ -23,12 +22,7 @@
     "gitlens.codeLens.enabled": false,
     "gitlens.currentLine.enabled": false,
     "gitlens.statusBar.reduceFlicker": true,
-    "python.linting.lintOnSave": false,
-    "python.linting.pep8Args": [
-        "--ignore=E501"
-    ],
-    "python.linting.pep8Enabled": true,
-    "python.sortImports.args": ["-ns", "__init__.py", "-l", "110"],
+    "python.sortImports.args": ["-ns", "__init__.py", "-l", "119"],
     "vs-kubernetes": {
         "disable-linters": [
             "resource-limits"
@@ -36,5 +30,15 @@
     },
     "window.zoomLevel": -2,
     "workbench.colorTheme": "Dracula At Night",
-    "yaml.format.enable": true
+    "yaml.format.enable": true,
+    "vsnotes.defaultNotePath": "/home/amanda/.vsnotes",
+    "editor.fontSize": 14,
+    "python.formatting.provider": "black",
+    "python.linting.lintOnSave": true,
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.formatting.blackArgs": [
+        "--line-length",
+        "119"
+    ]
 }
