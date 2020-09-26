@@ -36,9 +36,13 @@
     "python.formatting.provider": "black",
     "python.linting.lintOnSave": true,
     "python.linting.enabled": true,
-    "python.linting.pylintEnabled": true,
+    "python.linting.pylintEnabled": false,
     "python.formatting.blackArgs": [
         "--line-length",
         "119"
-    ]
+    ],
+    "python.linting.flake8Enabled": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python"
+    }
 }
