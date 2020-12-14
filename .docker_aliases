@@ -255,12 +255,13 @@ function grpcui {
     local name="${3:-grpcui}"
     local grpc_service_host="${1:-localhost:8888}"
     local grpc_ui_port="${2:-8002}"
-    echo -e "Launching grpcui"
+    echo -e "grpcui: connecting to ${grpc_service_host}"
     docker run --rm --detach --name "${name}" \
         --network host \
         -e GRPCUI_SERVER="${grpc_service_host}" \
         -e GRPCUI_PORT="${grpc_ui_port}" \
-        wongnai/grpcui
+        wongnai/grpcui \
+    && echo -e "grpcui: http://localhost:${grpc_ui_port}"
 }
 
 function vlc {
