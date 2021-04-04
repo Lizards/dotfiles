@@ -260,4 +260,4 @@ exec --no-startup-id xdg-open-server &
 # bluetooth
 exec --no-startup-id blueberry-tray &
 # wicd systray icon
-exec --no-startup-id wicd-gtk --tray &
+exec --no-startup-id nm-applet &
