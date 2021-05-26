@@ -22,7 +22,8 @@
     "gitlens.codeLens.enabled": false,
     "gitlens.currentLine.enabled": false,
     "gitlens.statusBar.reduceFlicker": true,
-    "python.sortImports.args": ["-ns", "__init__.py", "-l", "119"],
+    "python.sortImports.path": "/usr/bin/isort",
+    "python.sortImports.args": ["-l", "119"],
     "vs-kubernetes": {
         "disable-linters": [
             "resource-limits"
@@ -33,10 +34,11 @@
     "yaml.format.enable": true,
     "vsnotes.defaultNotePath": "/home/amanda/.vsnotes",
     "editor.fontSize": 13,
-    "python.formatting.provider": "black",
-    "python.linting.lintOnSave": true,
     "python.linting.enabled": true,
+    "python.linting.lintOnSave": true,
     "python.linting.pylintEnabled": true,
+    "python.linting.pylintArgs": ["--max-line-length=119", "--enable=W0611"],
+    "python.formatting.provider": "black",
     "python.formatting.blackArgs": [
         "--line-length",
         "119"
