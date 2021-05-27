@@ -45,5 +45,6 @@
     ],
     "[python]": {
         "editor.defaultFormatter": "ms-python.python"
-    }
+    },
+    "workbench.editor.untitled.hint": "hidden"
 }
