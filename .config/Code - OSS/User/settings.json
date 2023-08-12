@@ -3,7 +3,7 @@
     "breadcrumbs.enabled": true,
     "diffEditor.ignoreTrimWhitespace": true,
     "editor.fontFamily": "'Cousine'",
-    "editor.renderFinalNewline": true,
+    "editor.renderFinalNewline": "on",
     "editor.rulers": [
         119
     ],
@@ -22,8 +22,8 @@
     "gitlens.codeLens.enabled": false,
     "gitlens.currentLine.enabled": false,
     "gitlens.statusBar.reduceFlicker": true,
-    "python.sortImports.path": "/usr/bin/isort",
-    "python.sortImports.args": ["-l", "119"],
+    "isort.path": "isort",
+    "isort.args": ["-l", "119"],
     "vs-kubernetes": {
         "disable-linters": [
             "resource-limits"
@@ -37,7 +37,7 @@
     "python.linting.enabled": true,
     "python.linting.lintOnSave": true,
     "python.linting.pylintEnabled": true,
-    "python.linting.pylintArgs": ["--max-line-length=119", "--enable=W0611"],
+    "python.linting.pylintArgs": ["--max-line-length=119", "--enable=W0611,unused-import"],
     "python.formatting.provider": "black",
     "python.formatting.blackArgs": [
         "--line-length",
@@ -46,5 +46,6 @@
     "[python]": {
         "editor.defaultFormatter": "ms-python.python"
     },
-    "workbench.editor.untitled.hint": "hidden"
+    "workbench.editor.untitled.hint": "hidden",
+    "workbench.editor.splitInGroupLayout": "vertical"
 }
