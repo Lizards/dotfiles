@@ -1,15 +1,10 @@
 !! ansi colors
 
 !! black dark/light
-!!#define S_black         #1E2541
 #define S_black         #080b1c
 #define S_brblack       #354274
-!!#define S_brblack       #4d5ea1
 *color0:                S_black
 *color8:                S_brblack
-
-!!#define S_menubar         #080b1c
-!!#define S_menubar_title   #4d5ea1
 
 !! red dark/light
 #define S_red           #F02E6E
@@ -25,7 +20,6 @@
 
 !! yellow dark/light
 #define S_yellow        #f59151
-!!#define S_yellow        #FF8537
 #define S_bryellow      #FFA56B
 *color3:                S_yellow
 *color11:               S_bryellow
@@ -57,6 +51,7 @@
 !! useful extras
 #define S_terminal        #171926
 #define S_real_black      #000000
+#define S_gray            #8a90a8
 
 *background:            S_terminal
 *foreground:            S_white
@@ -146,4 +141,3 @@ URxvt.intensityStyles: false
 
 #include ".Xresources.d/i3"
 #include ".Xresources.d/polybar"
-#include ".Xresources.d/rofi"
