@@ -1,5 +1,5 @@
 # unsets colors to term's foreground color
-COLOR_NONE="\\[\\033[0m\\]" 
+COLOR_NONE="\\[\\033[0m\\]"
 
 # regular colors
 COLOR_BLACK="\\[\\033[0;30m\\]"
@@ -11,6 +11,15 @@ COLOR_MAGENTA="\\[\\033[0;35m\\]"
 COLOR_CYAN="\\[\\033[0;36m\\]"
 COLOR_WHITE="\\[\\033[0;37m\\]"
 
+COLOR_BRBLACK="\\[\\033[0;90m\\]"
+COLOR_BRRED="\\[\\033[0;91m\\]"
+COLOR_BRGREEN="\\[\\033[0;92m\\]"
+COLOR_BRYELLOW="\\[\\033[0;93m\\]"
+COLOR_BRBLUE="\\[\\033[0;94m\\]"
+COLOR_BRMAGENTA="\\[\\033[0;95m\\]"
+COLOR_BRCYAN="\\[\\033[0;96m\\]"
+COLOR_BRWHITE="\\[\\033[0;97m\\]"
+
 # emphasized (bolded) colors
 COLOR_BLACK_BOLD="\\[\\033[1;30m\\]"
 COLOR_RED_BOLD="\\[\\033[1;31m\\]"
@@ -20,6 +29,15 @@ COLOR_BLUE_BOLD="\\[\\033[1;34m\\]"
 COLOR_MAGENTA_BOLD="\\[\\033[1;35m\\]"
 COLOR_CYAN_BOLD="\\[\\033[1;36m\\]"
 COLOR_WHITE_BOLD="\\[\\033[1;37m\\]"
+
+COLOR_BRBLACK_BOLD="\\[\\033[1;90m\\]"
+COLOR_BRRED_BOLD="\\[\\033[1;91m\\]"
+COLOR_BRGREE_BOLDN="\\[\\033[1;92m\\]"
+COLOR_BRYELLOW_BOLD="\\[\\033[1;93m\\]"
+COLOR_BRBLUE_BOLD="\\[\\033[1;94m\\]"
+COLOR_BRMAGENTA_BOLD="\\[\\033[1;95m\\]"
+COLOR_BRCYAN_BOLD="\\[\\033[1;96m\\]"
+COLOR_BRWHITE_BOLD="\\[\\033[1;97m\\]"
 
 # background colors
 COLOR_BLACK_BG="\\[\\033[40m\\]"
@@ -31,3 +49,11 @@ COLOR_MAGENTA_BG="\\[\\033[45m\\]"
 COLOR_CYAN_BG="\\[\\033[46m\\]"
 COLOR_WHITE_BG="\\[\\033[47m\\]"
 
+COLOR_BRBLACK_BG="\\[\\033[100m\\]"
+COLOR_BRRED_BG="\\[\\033[101m\\]"
+COLOR_BRGREEN_BG="\\[\\033[102m\\]"
+COLOR_BRYELLOW_BG="\\[\\033[103m\\]"
+COLOR_BRBLUE_BG="\\[\\033[104m\\]"
+COLOR_BRMAGENTA_BG="\\[\\033[105m\\]"
+COLOR_BRCYAN_BG="\\[\\033[106m\\]"
+COLOR_BRWHITE_BG="\\[\\033[107m\\]"
