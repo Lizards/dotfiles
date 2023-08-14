@@ -12,15 +12,20 @@
         s = status --short
         ci = commit
         co = checkout
-        lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-        lga = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --all
-        lgs = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -15
-        lgsa = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -15 --all
+        lg = log --graph --pretty=format:'%C(magenta)%h%Creset -%C(bold yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+        lga = log --graph --pretty=format:'%C(magenta)%h%Creset -%C(bold yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --all
+        lgs = log --graph --pretty=format:'%C(magenta)%h%Creset -%C(bold yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -15
+        lgsa = log --graph --pretty=format:'%C(magenta)%h%Creset -%C(bold yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -15 --all
         ix = diff --cached
 [push]
         default = simple
 
 [diff]
 	tool = vscode
+[color "diff"]
+    old = magenta
+    new = green
+    meta = blue bold
+    frag = brightblue
 [difftool "vscode"]
 	cmd = "code --wait --diff ${LOCAL} ${REMOTE}"

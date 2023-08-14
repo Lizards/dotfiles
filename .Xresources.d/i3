@@ -7,8 +7,9 @@ i3.green:           S_brgreen
 i3.blue:            S_brblue
 i3.violet:          S_brmagenta
 i3.red:             S_brred
-i3.text1:           S_black
-i3.text2:           S_brblack
+i3.text1:           S_foreground
+i3.text2:           S_brbackground
 i3.urgent:          S_blue
-i3.focus:           S_brblack
-i3.border:          S_real_black
+i3.focus:           S_background
+i3.unfocused:       S_drbackground
+i3.border:          S_drbackground

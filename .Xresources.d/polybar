@@ -1,14 +1,14 @@
 !! polybar color vars
 
-pb.background:      S_black
-pb.background-alt:  S_black
+pb.background:      S_background
 pb.foreground:      S_white
-pb.foreground-alt:  S_brblack
+pb.background-alt:  S_background
+pb.foreground-alt:  S_brmagenta
 pb.border:          S_real_black
-pb.title:           S_brblack
+pb.title:           S_bryellow
 pb.primary:         S_bryellow
 pb.secondary:       S_yellow
-pb.alert:           S_blue
+pb.alert:           S_brred
 pb.warning:         S_bryellow
 pb.warm:            S_brred
 pb.cool:            S_green

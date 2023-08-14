@@ -8,6 +8,7 @@
         119
     ],
     "editor.trimAutoWhitespace": true,
+    "editor.semanticHighlighting.enabled": true,
     "files.exclude": {
         "**/*.pyc": true,
         "**/.git": true,
@@ -30,7 +31,6 @@
         ]
     },
     "window.zoomLevel": -2,
-    "workbench.colorTheme": "Dracula At Night",
     "yaml.format.enable": true,
     "vsnotes.defaultNotePath": "/home/amanda/.vsnotes",
     "editor.fontSize": 13,

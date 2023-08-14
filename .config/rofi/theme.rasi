@@ -2,24 +2,27 @@
  * Rofi version: 1.7.5
  **/
 * {
-    /* copied .Xresources colors */
-    black:         #080b1c;
-    brblack:       #354274;
-    red:           #F02E6E;
-    brred:         #F0719B;
-    green:         #2CE592;
-    brgreen:       #5AF7B0;
-    yellow:        #f59151;
-    bryellow:      #FFA56B;
-    blue:          #1DA0E2;
-    brblue:        #57C7FF;
-    magenta:       #af6bdb;
-    brmagenta:     #8c60a8;
-    cyan:          #47BAE8;
-    brcyan:        #89DDFF;
-    white:         #DEE6E7;
-    brwhite:       #EEFFFF;
-    gray:          #8a90a8;
+    /* .Xresources colors */
+    black:         #382e2e;
+    brblack:       #4A3637;
+    red:           #dd773c;
+    brred:         #000000;
+    green:         #8a9d34;
+    brgreen:       #7B8748;
+    yellow:        #c88741;
+    bryellow:      #af865a;
+    blue:          #387575;
+    brblue:        #4a6464;
+    magenta:       #8a4247;
+    brmagenta:     #775759;
+    cyan:          #77834e;
+    brcyan:        #6D715E;
+    white:         #C0B18B;
+    brwhite:       #dfcd9f;
+    background:    #1F1F1F;
+    brbackground:  #595959;
+    drbackground:  #1a1a1a;
+    realblack:     #000000;
 
     foreground:                  var(bryellow);
     background:                  var(black);
@@ -27,11 +30,11 @@
     border-color:                var(brblack);
     spacing:                     2;
     background-color:            transparent;
-    header-foreground:           var(gray);
+    header-foreground:           var(bryellow);
 
-    normal-foreground:           var(bryellow);
+    normal-foreground:           var(white);
     normal-background:           var(black);
-    alternate-normal-foreground: var(bryellow);
+    alternate-normal-foreground: var(white);
     alternate-normal-background: var(black);
     selected-normal-foreground:  var(black);
     selected-normal-background:  var(bryellow);
@@ -181,12 +184,15 @@ textbox-prompt-colon {
     text-color: var(header-foreground);
 }
 textbox-num-sep {
+    text-color: var(header-foreground);
     expand:     false;
     str:        "/";
 }
 num-filtered-rows {
+    text-color: var(header-foreground);
     expand:     false;
 }
 num-rows {
+    text-color: var(header-foreground);
     expand:     false;
 }

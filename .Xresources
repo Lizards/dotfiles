@@ -1,66 +1,69 @@
 !! ansi colors
 
 !! black dark/light
-#define S_black         #080b1c
-#define S_brblack       #354274
+#define S_black         #382e2e
+#define S_brblack       #4A3637
 *color0:                S_black
 *color8:                S_brblack
 
 !! red dark/light
-#define S_red           #F02E6E
-#define S_brred         #F0719B
+#define S_red           #dd773c
+#define S_brred         #d6895c
 *color1:                S_red
 *color9:                S_brred
 
 !! green dark/light
-#define S_green         #2CE592
-#define S_brgreen       #5AF7B0
+#define S_green         #8a9d34
+#define S_brgreen       #7B8748
 *color2:                S_green
 *color10:               S_brgreen
 
 !! yellow dark/light
-#define S_yellow        #f59151
-#define S_bryellow      #FFA56B
+#define S_yellow        #c88741
+#define S_bryellow      #af865a
 *color3:                S_yellow
 *color11:               S_bryellow
 
 !! blue dark/light
-#define S_blue          #1DA0E2
-#define S_brblue        #57C7FF
+#define S_blue          #387575
+#define S_brblue        #4a6464
 *color4:                S_blue
 *color12:               S_brblue
 
 !! magenta dark/light
-#define S_magenta       #af6bdb
-#define S_brmagenta     #8c60a8
+#define S_magenta       #8a4247
+#define S_brmagenta     #775759
 *color5:                S_magenta
 *color13:               S_brmagenta
 
 !! cyan dark/light
-#define S_cyan          #47BAE8
-#define S_brcyan        #89DDFF
+#define S_cyan          #77834e
+#define S_brcyan        #6D715E
 *color6:                S_cyan
 *color14:               S_brcyan
 
 !! white dark/light
-#define S_white         #DEE6E7
-#define S_brwhite       #EEFFFF
+#define S_white         #C0B18B
+#define S_brwhite       #dfcd9f
 *color7:                S_white
 *color15:               S_brwhite
 
-!! useful extras
-#define S_terminal        #171926
-#define S_real_black      #000000
-#define S_gray            #8a90a8
+!! special
+#define S_background    #1F1F1F
+#define S_foreground    #e4decd
+*background:            S_background
+*foreground:            S_foreground
+#define S_real_black    #000000
+real_black:             S_real_black
+#define S_brbackground  #595959
+brbackground:           S_brbackground
+#define S_drbackground  #1a1a1a
+drbackground:           S_drbackground
 
-*background:            S_terminal
-*foreground:            S_white
-*depth:                 32
-*fading:                40
-*fadeColor:             S_terminal
-*cursorColor:           S_green
 *pointerColorBackground:S_brgreen
 *pointerColorForeground:S_brcyan
+*depth:                 32
+*fading:                40
 
 *utf8:                  1
 *saveLines:             999999
@@ -80,13 +83,15 @@ Xft.antialias:  1
 
 ! -- URxvt appearance -- !
 URxvt*termName:         rxvt
-URxvt*background:       S_terminal
+URxvt*background:       S_drbackground
 URxvt*cursorBlink:      true
 !! enable transparency
 !! URxvt*background:    rgba:0000/0000/0000/cccc
 !! URxvt.transparent:   true
 !! URxvt.tintColor:     S_terminal
 !! URxvt.shading:       90
+Urxvt.cursorColor:      S_foreground
+Urxvt.fadeColor:        S_real_black
 
 !! fonts
 URxvt.font:             xft:Ubuntu Mono:size=8

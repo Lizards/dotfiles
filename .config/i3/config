@@ -228,21 +228,22 @@ new_float normal
 hide_edge_borders both
 
 # colors from .Xresources
-set_from_resource $border   i3.border     #ffffff
-set_from_resource $focus    i3.focus      #0088ff
-set_from_resource $urgent   i3.urgent     #0088ff
-set_from_resource $blue     i3.blue       #0088ff
-set_from_resource $violet   i3.violet     #0088ff
-set_from_resource $green    i3.green      #0088ff
-set_from_resource $red      i3.red        #0088ff
-set_from_resource $text1    i3.text1      #0088ff
-set_from_resource $text2    i3.text2      #0088ff
+set_from_resource $border    i3.border     #ffffff
+set_from_resource $focus     i3.focus      #0088ff
+set_from_resource $unfocused i3.unfocused  #0088ff
+set_from_resource $urgent    i3.urgent     #0088ff
+set_from_resource $blue      i3.blue       #0088ff
+set_from_resource $violet    i3.violet     #0088ff
+set_from_resource $green     i3.green      #0088ff
+set_from_resource $red       i3.red        #0088ff
+set_from_resource $text1     i3.text1      #0088ff
+set_from_resource $text2     i3.text2      #0088ff
 
-# clientclass                border  backgr. text    indicator child_border
-client.focused               $border $focus  $text1  $blue     $focus
-client.focused_inactive      $border $focus  $text1  $violet   $border
-client.unfocused             $border $border $text2  $green    $border
-client.urgent                $urgent $urgent $text1  $red      $urgent
+# clientclass                border  backgr.    text    indicator child_border
+client.focused               $border $focus     $text1  $blue     $focus
+client.focused_inactive      $border $focus     $text1  $violet   $border
+client.unfocused             $border $unfocused $text2  $green    $border
+client.urgent                $urgent $urgent    $text1  $red      $urgent
 
 
 ##########################
