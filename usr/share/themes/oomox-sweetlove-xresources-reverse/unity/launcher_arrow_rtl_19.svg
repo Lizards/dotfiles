@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="19">
  <defs>
   <clipPath>
-   <rect width="10" height="19" x="20" y="1033.36" opacity="0.12" fill="#4a6464" color="#C0B18B"/>
+   <rect width="10" height="19" x="20" y="1033.36" opacity="0.12" fill="#4a6464" color="#e4decd"/>
   </clipPath>
  </defs>
  <g transform="translate(0,-1033.3622)">
-  <rect width="4" height="8" x="4" y="1039.36" rx="0.5" fill="#e4decd"/>
+  <rect width="4" height="8" x="4" y="1039.36" rx="0.5" fill="#dfcd9f"/>
  </g>
 </svg>

@@ -3,12 +3,12 @@
 pb.background:      S_background
 pb.foreground:      S_white
 pb.background-alt:  S_background
-pb.foreground-alt:  S_brmagenta
+pb.foreground-alt:  S_brbackground
 pb.border:          S_real_black
-pb.title:           S_bryellow
+pb.title:           S_brcyan
 pb.primary:         S_bryellow
 pb.secondary:       S_yellow
 pb.alert:           S_brred
-pb.warning:         S_bryellow
-pb.warm:            S_brred
+pb.warning:         S_yellow
+pb.warm:            S_magenta
 pb.cool:            S_green

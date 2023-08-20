@@ -13,49 +13,49 @@
 *color9:                S_brred
 
 !! green dark/light
-#define S_green         #8a9d34
-#define S_brgreen       #7B8748
+#define S_green         #90a824
+#define S_brgreen       #7b8748
 *color2:                S_green
 *color10:               S_brgreen
 
 !! yellow dark/light
-#define S_yellow        #c88741
+#define S_yellow        #d78f42
 #define S_bryellow      #af865a
 *color3:                S_yellow
 *color11:               S_bryellow
 
 !! blue dark/light
-#define S_blue          #387575
+#define S_blue          #3d8f8f
 #define S_brblue        #4a6464
 *color4:                S_blue
 *color12:               S_brblue
 
 !! magenta dark/light
-#define S_magenta       #8a4247
+#define S_magenta       #bd4d28
 #define S_brmagenta     #775759
 *color5:                S_magenta
 *color13:               S_brmagenta
 
 !! cyan dark/light
-#define S_cyan          #77834e
+#define S_cyan          #859550
 #define S_brcyan        #6D715E
 *color6:                S_cyan
 *color14:               S_brcyan
 
 !! white dark/light
-#define S_white         #C0B18B
+#define S_white         #c0b18c
 #define S_brwhite       #dfcd9f
 *color7:                S_white
 *color15:               S_brwhite
 
 !! special
-#define S_background    #1F1F1F
+#define S_background    #1b1818
 #define S_foreground    #e4decd
 *background:            S_background
 *foreground:            S_foreground
 #define S_real_black    #000000
 real_black:             S_real_black
-#define S_brbackground  #595959
+#define S_brbackground  #514848
 brbackground:           S_brbackground
 #define S_drbackground  #1a1a1a
 drbackground:           S_drbackground

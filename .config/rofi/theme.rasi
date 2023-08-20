@@ -6,23 +6,24 @@
     black:         #382e2e;
     brblack:       #4A3637;
     red:           #dd773c;
-    brred:         #000000;
-    green:         #8a9d34;
-    brgreen:       #7B8748;
-    yellow:        #c88741;
+    brred:         #1b1818;
+    green:         #90a824;
+    brgreen:       #7b8748;
+    yellow:        #d78f42;
     bryellow:      #af865a;
-    blue:          #387575;
+    blue:          #3d8f8f;
     brblue:        #4a6464;
-    magenta:       #8a4247;
+    magenta:       #bd4d28;
     brmagenta:     #775759;
-    cyan:          #77834e;
+    cyan:          #859550;
     brcyan:        #6D715E;
-    white:         #C0B18B;
+    white:         #c0b18c;
     brwhite:       #dfcd9f;
-    background:    #1F1F1F;
-    brbackground:  #595959;
+    background:    #1b1818;
+    brbackground:  #514848;
     drbackground:  #1a1a1a;
     realblack:     #000000;
+
 
     foreground:                  var(bryellow);
     background:                  var(black);
@@ -36,15 +37,15 @@
     normal-background:           var(black);
     alternate-normal-foreground: var(white);
     alternate-normal-background: var(black);
-    selected-normal-foreground:  var(black);
-    selected-normal-background:  var(bryellow);
+    selected-normal-foreground:  var(brwhite);
+    selected-normal-background:  var(brblue);
 
     active-foreground:           var(bryellow);
     active-background:           var(brblack);
     alternate-active-foreground: var(bryellow);
     alternate-active-background: var(brblack);
-    selected-active-foreground:  var(brblack);
-    selected-active-background:  var(bryellow);
+    selected-active-foreground:  var(brwhite);
+    selected-active-background:  var(brblue);
 
     urgent-foreground:           var(red);
     urgent-background:           var(black);
