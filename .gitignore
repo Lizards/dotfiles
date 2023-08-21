@@ -1,9 +1,9 @@
 *.diff
 .private_aliases
 .config/Code - OSS
-.config/hexchat
 .config/gtk-3.0/servers
 .config/gtk-3.0/bookmarks
+*.code-workspace
 test.db
 *.log
 celerybeat.pid
