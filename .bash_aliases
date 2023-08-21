@@ -15,9 +15,6 @@ alias vi='vim'
 alias diff='diff --color=auto'
 alias tcpwatch="sudo tcpflow -p -c -i eth0 port 80 | grep -oE '(GET|POST|HEAD) .* HTTP/1.[01]|Host: .*'"
 alias pycleanup='find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf'
-alias rs='python manage.py runserver'
-alias celd='python manage.py celeryd --loglevel=INFO --autoreload'
-alias celb='python manage.py celerybeat --scheduler=djcelery.schedulers.DatabaseScheduler'
 alias xsel='xsel --clipboard'
 alias please='sudo $(history -p \!\!)'
 alias back='cd $OLDPWD'
@@ -27,20 +24,15 @@ alias makepkg-sha256sums='makepkg -g -f -p PKGBUILD'
 alias aur-prep="makepkg-sha256sums && makepkg --printsrcinfo > .SRCINFO"
 alias fonts='fc-list | cut -f2 -d: | sort -u'
 
-
-function ec2list() {
-    auth-aws "${1}"
-    aws --region us-east-1 --profile "${AWS_DEFAULT_PROFILE}" ec2 describe-instances --no-paginate --query 'sort_by(Reservations[].Instances[].{IP:NetworkInterfaces[0].PrivateIpAddress, State:State.Name, Name:Tags[?Key==`Name`].Value | [0], Launched:LaunchTime}, &Name)' --output table;
-}
-
 function deps {
     pacman -Qi "${1}" | grep Required
 }
 
-function vt() {
-    local fn=$1
-    aws cloudformation validate-template --template-body "file://${fn}";
-    /usr/bin/json_verify < "${fn}";
+function aur-remove() {
+    local package=$1
+    repo-remove /var/cache/pacman/custom/custom.db.tar "${package}"
+    sudo pacman -R "${package}"
+    paccache -r
 }
 
 # some more ls aliases
