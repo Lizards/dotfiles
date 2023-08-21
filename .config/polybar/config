@@ -32,7 +32,7 @@ background-alt = ${xrdb:pb.background-alt:#0f0}
 foreground = ${xrdb:pb.foreground:#ff0}
 foreground-alt = ${xrdb:pb.foreground-alt:#f00}
 title = ${xrdb:pb.title:#fff}
-slider-bar-bg = #555
+slider-bar-bg = #777
 primary = ${xrdb:pb.primary:#e6ffb52a0053}
 secondary = ${xrdb:pb.secondary:#e60053}
 alert = ${xrdb:pb.alert:#bd2c40}
@@ -180,9 +180,6 @@ wrapping-scroll = false
 ws-icon-0 = "1; "
 ws-icon-1 = "2; "
 ws-icon-2 = "3; "
-ws-icon-3 = "8; "
-ws-icon-4 = "9; "
-ws-icon-5 = "10; "
 
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
@@ -194,14 +191,14 @@ label-mode-background = ${colors.primary}
 ; focused = Active workspace on focused monitor
 label-focused = ${self.label-fmt}
 label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.highlight-cool}
-;label-focused-foreground= ${colors.highlight-cool}
+label-focused-underline= ${colors.foreground}
+label-focused-foreground= ${colors.foreground}
 label-focused-padding = ${self.padding}
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = ${self.label-fmt}
 label-unfocused-padding = ${self.padding}
-label-unfocused-foreground = ${colors.title}
+label-unfocused-foreground = ${colors.foreground-alt}
 
 ; visible = Active workspace on unfocused monitor
 label-visible = ${self.label-fmt}
@@ -212,6 +209,7 @@ label-visible-padding = ${self.padding}
 ; urgent = Workspace with urgency hint set
 label-urgent = ${self.label-fmt}
 label-urgent-background = ${colors.alert}
+label-urgent-foreground = ${colors.background}
 ;label-urgent-underline = ${colors.alert}
 label-urgent-padding = ${self.padding}
 
@@ -364,7 +362,7 @@ label-muted = MUTED
 
 color-ok = ${xrdb:color4:#0f0}
 color-warning = ${xrdb:color3:#0ff}
-color-bleeding = ${xrdb:color9:#f00}
+color-bleeding = ${xrdb:color5:#f00}
 
 bar-volume-width = 6
 bar-volume-foreground-0 = ${self.color-ok}
@@ -549,6 +547,7 @@ label-occupied-padding = 2
 
 label-urgent = %index%!
 label-urgent-background = ${colors.alert}
+label-urgent-foreground = ${colors.background}
 label-urgent-padding = 2
 
 label-empty = %index%

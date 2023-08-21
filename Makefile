@@ -63,11 +63,15 @@ root: ## Installs root's dotfiles
 
 .PHONY: usr
 usr: ## Installs /usr files
-	# symlinks everything in lib/ in /usr/local/lib
-	for file in $(shell find $(CURDIR)/lib -type f -not -name ".*"); do \
+	# symlinks everything in usr/local/lib/ in /usr/local/lib
+	for file in $(shell find $(CURDIR)/usr/local/lib -type f -not -name ".*"); do \
 		f=$$(basename $$file); \
 		sudo ln -sf $$file /usr/local/lib/$$f; \
 	done
+	# LXAppearance .icons
+	sudo cp -R $(CURDIR)/usr/share/icons/* /usr/share/icons
+	# Custom GTK .themes
+	sudo cp -R $(CURDIR)/usr/share/themes/* /usr/share/themes
 
 .PHONY: help
 help:

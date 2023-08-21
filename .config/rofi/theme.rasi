@@ -2,24 +2,28 @@
  * Rofi version: 1.7.5
  **/
 * {
-    /* copied .Xresources colors */
-    black:         #080b1c;
-    brblack:       #354274;
-    red:           #F02E6E;
-    brred:         #F0719B;
-    green:         #2CE592;
-    brgreen:       #5AF7B0;
-    yellow:        #f59151;
-    bryellow:      #FFA56B;
-    blue:          #1DA0E2;
-    brblue:        #57C7FF;
-    magenta:       #af6bdb;
-    brmagenta:     #8c60a8;
-    cyan:          #47BAE8;
-    brcyan:        #89DDFF;
-    white:         #DEE6E7;
-    brwhite:       #EEFFFF;
-    gray:          #8a90a8;
+    /* .Xresources colors */
+    black:         #382e2e;
+    brblack:       #4A3637;
+    red:           #dd773c;
+    brred:         #1b1818;
+    green:         #90a824;
+    brgreen:       #7b8748;
+    yellow:        #d78f42;
+    bryellow:      #af865a;
+    blue:          #3d8f8f;
+    brblue:        #4a6464;
+    magenta:       #bd4d28;
+    brmagenta:     #775759;
+    cyan:          #859550;
+    brcyan:        #6D715E;
+    white:         #c0b18c;
+    brwhite:       #dfcd9f;
+    background:    #1b1818;
+    brbackground:  #514848;
+    drbackground:  #1a1a1a;
+    realblack:     #000000;
+
 
     foreground:                  var(bryellow);
     background:                  var(black);
@@ -27,21 +31,21 @@
     border-color:                var(brblack);
     spacing:                     2;
     background-color:            transparent;
-    header-foreground:           var(gray);
+    header-foreground:           var(bryellow);
 
-    normal-foreground:           var(bryellow);
+    normal-foreground:           var(white);
     normal-background:           var(black);
-    alternate-normal-foreground: var(bryellow);
+    alternate-normal-foreground: var(white);
     alternate-normal-background: var(black);
-    selected-normal-foreground:  var(black);
-    selected-normal-background:  var(bryellow);
+    selected-normal-foreground:  var(brwhite);
+    selected-normal-background:  var(brblue);
 
     active-foreground:           var(bryellow);
     active-background:           var(brblack);
     alternate-active-foreground: var(bryellow);
     alternate-active-background: var(brblack);
-    selected-active-foreground:  var(brblack);
-    selected-active-background:  var(bryellow);
+    selected-active-foreground:  var(brwhite);
+    selected-active-background:  var(brblue);
 
     urgent-foreground:           var(red);
     urgent-background:           var(black);
@@ -181,12 +185,15 @@ textbox-prompt-colon {
     text-color: var(header-foreground);
 }
 textbox-num-sep {
+    text-color: var(header-foreground);
     expand:     false;
     str:        "/";
 }
 num-filtered-rows {
+    text-color: var(header-foreground);
     expand:     false;
 }
 num-rows {
+    text-color: var(header-foreground);
     expand:     false;
 }

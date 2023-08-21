@@ -175,7 +175,6 @@ set $workspace10 "10"
 assign [class="Chromium"] $workspace1
 assign [class="Signal"] $workspace3
 assign [class="code-oss"] $workspace2
-assign [class="Hexchat"] $workspace3
 assign [class="Slack"] $workspace3
 assign [class="Mysql-workbench"] $workspace8
 assign [class="VirtualBox"] $workspace10
@@ -188,25 +187,20 @@ for_window [class="Spotify"] floating enable border none, resize set $dockerSpot
 # windows starting in floating mode
 for_window [title="File Transfer*"] floating enable
 for_window [title="Tabs Outliner"] floating enable
-for_window [class="Lightdm-gtk-greeter-settings"] floating enable
 for_window [class="Transmission"] floating enable border normal
 for_window [class="Lxappearance"] floating enable border normal
 for_window [class="Nautilus"] floating enable
-for_window [class="Thunar"] floating enable border normal
 for_window [class="Chromium" title="Open File"] floating enable, resize set 1300 800, move position center
 for_window [class="Arandr"] floating enable, resize set 1000 700, move position center
 for_window [class="Gimp"] floating enable
 for_window [class="KeePass2"] floating enable border normal
 for_window [title="Open Database File"] floating enable border normal, resize set 1000 700, move position center
 for_window [title="Select key file manually"] floating enable border normal, resize set 1000 700, move position center
-for_window [class="Wicd-client.py"] floating enable border normal, resize set 1100 900, move position center
-for_window [class="Dconf-editor"] floating enable
 for_window [class="Blueberry"] floating enable border normal, resize set 1000 700, move position center
 for_window [class="Pavucontrol"] floating enable border normal
 for_window [instance="crx_gaedmjdfmmahhbjefcbgaolhhanlaolb"] floating enable
 for_window [class="Mysql-workbench-bin" title="Connect to Database"] floating enable, resize set 1500 800, move position center
 for_window [class="VirtualBox" title="Select a virtual machine file"] floating enable, resize set 1200 600, move position center
-
 
 #########################
 ###      Theme        ###
@@ -228,21 +222,22 @@ new_float normal
 hide_edge_borders both
 
 # colors from .Xresources
-set_from_resource $border   i3.border     #ffffff
-set_from_resource $focus    i3.focus      #0088ff
-set_from_resource $urgent   i3.urgent     #0088ff
-set_from_resource $blue     i3.blue       #0088ff
-set_from_resource $violet   i3.violet     #0088ff
-set_from_resource $green    i3.green      #0088ff
-set_from_resource $red      i3.red        #0088ff
-set_from_resource $text1    i3.text1      #0088ff
-set_from_resource $text2    i3.text2      #0088ff
+set_from_resource $border    i3.border     #ffffff
+set_from_resource $focus     i3.focus      #0088ff
+set_from_resource $unfocused i3.unfocused  #0088ff
+set_from_resource $urgent    i3.urgent     #0088ff
+set_from_resource $blue      i3.blue       #0088ff
+set_from_resource $violet    i3.violet     #0088ff
+set_from_resource $green     i3.green      #0088ff
+set_from_resource $red       i3.red        #0088ff
+set_from_resource $text1     i3.text1      #0088ff
+set_from_resource $text2     i3.text2      #0088ff
 
-# clientclass                border  backgr. text    indicator child_border
-client.focused               $border $focus  $text1  $blue     $focus
-client.focused_inactive      $border $focus  $text1  $violet   $border
-client.unfocused             $border $border $text2  $green    $border
-client.urgent                $urgent $urgent $text1  $red      $urgent
+# clientclass                border  backgr.    text    indicator child_border
+client.focused               $border $focus     $text1  $blue     $focus
+client.focused_inactive      $border $focus     $text1  $violet   $border
+client.unfocused             $border $unfocused $text2  $green    $border
+client.urgent                $urgent $urgent    $text1  $red      $urgent
 
 
 ##########################
