@@ -193,7 +193,7 @@ for_window [class="Nautilus"] floating enable
 for_window [class="Chromium" title="Open File"] floating enable, resize set 1300 800, move position center
 for_window [class="Arandr"] floating enable, resize set 1000 700, move position center
 for_window [class="Gimp"] floating enable
-for_window [class="KeePass2"] floating enable border normal
+for_window [class="KeePassXC"] floating enable border normal
 for_window [title="Open Database File"] floating enable border normal, resize set 1000 700, move position center
 for_window [title="Select key file manually"] floating enable border normal, resize set 1000 700, move position center
 for_window [class="Blueberry"] floating enable border normal, resize set 1000 700, move position center
