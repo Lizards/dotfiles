@@ -92,14 +92,14 @@ font-2 = "Ubuntu:fontformat=truetype;pixelsize=10;1"
 ;---------------------------------------
 [bar/left]
 inherit = bar/base
-monitor = ${env:MONITOR:DP-2}
+monitor = ${env:POLYBAR_MONITOR_LEFT:DP-2}
 modules-left = i3 xwindow
 modules-center =
 modules-right = date utcdate
 
 [bar/right]
 inherit = bar/base
-monitor = ${env:MONITOR:DP-3}
+monitor = ${env:POLYBAR_MONITOR_RIGHT:DP-3}
 modules-left = i3 xwindow
 modules-center =
 modules-right = cpu temperature volume vpn wlan eth date utcdate
@@ -113,7 +113,7 @@ tray-padding = 2
 ;---------------------------------------
 [bar/x1internal]
 inherit = bar/base
-monitor = ${env:MONITOR:eDP1}
+monitor = ${env:POLYBAR_MONITOR_LEFT:eDP1}
 modules-left = i3 xwindow-custom
 modules-center =
 modules-right = cpu temperature volume xbacklight vpn wlan eth battery date utcdate
@@ -122,28 +122,7 @@ tray-padding = 2
 
 [bar/x1external]
 inherit = bar/base
-monitor = ${env:MONITOR:HDMI1}
-modules-left = i3 xwindow
-modules-center =
-modules-right = cpu temperature volume vpn wlan eth battery date utcdate
-tray-position = right
-tray-padding = 2
-
-;---------------------------------------
-;       W540 LAPTOP SCREEN BAR
-;---------------------------------------
-[bar/w540internal]
-inherit = bar/base
-monitor = ${env:MONITOR:eDP1}
-modules-left = i3 xwindow
-modules-center =
-modules-right = cpu temperature volume xbacklight vpn wlan eth battery date utcdate
-tray-position = right
-tray-padding = 2
-
-[bar/w540external]
-inherit = bar/base
-monitor = ${env:MONITOR:DP1}
+monitor = ${env:POLYBAR_MONITOR_LEFT:HDMI1}
 modules-left = i3 xwindow
 modules-center =
 modules-right = cpu temperature volume vpn wlan eth battery date utcdate
