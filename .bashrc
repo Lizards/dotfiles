@@ -47,7 +47,7 @@ bash_prompt() {
 
     if [ "$1" = yes ]; then
         # shellcheck disable=SC2028
-        echo "${COLOR_GIT}\$(__git_ps1 \"(%s) \")${COLOR_USER}\\u@\\h${COLOR_NONE} in ${COLOR_PATH}\\w${COLOR_NONE}\\n${COLOR_PROMPT}>>${COLOR_NONE} "
+        echo "${COLOR_GIT}\$(__git_ps1 \"(%s) \")${COLOR_USER}\\u@\\h${COLOR_NONE} in ${COLOR_PATH}\\w${COLOR_NONE}\\n${COLOR_PROMPT}\$${COLOR_NONE} "
     else
         echo "\$(__git_ps1 \"(%s) \") \\u@\\h:\\w\$ "
     fi
