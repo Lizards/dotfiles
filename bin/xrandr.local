@@ -1,11 +1,11 @@
 #!/bin/sh
 
 
-EXTERNAL_OUTPUT="HDMI1"
-INTERNAL_OUTPUT="eDP1"
+# $EXTERNAL_DISPLAY set in .profile
+# Use arandr to generate the xrandr script
 
-
-if $(xrandr --prop | grep -q "${EXTERNAL_OUTPUT} connected"); then
+echo "xrandr.local debug: ${EXTERNAL_DISPLAY}"
+if $(xrandr --prop | grep -q "${EXTERNAL_DISPLAY} connected"); then
     echo "External monitor detected"
     xrandr --output eDP1 --mode 2560x1440 --pos 0x1000 --rotate normal --output DP1 --off --output HDMI2 --off --output HDMI1 --primary --mode 3840x2160 --pos 2560x0 --rotate normal --output DP2 --off --output VIRTUAL1 --off
 
