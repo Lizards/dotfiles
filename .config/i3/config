@@ -196,8 +196,7 @@ for_window [class="Gimp"] floating enable
 for_window [class="KeePassXC"] floating enable border normal
 for_window [title="Open Database File"] floating enable border normal, resize set 1000 700, move position center
 for_window [title="Select key file manually"] floating enable border normal, resize set 1000 700, move position center
-for_window [class="Blueberry"] floating enable border normal, resize set 1000 700, move position center
-for_window [class="Pavucontrol"] floating enable border normal
+for_window [class="Blueman-manager"] floating enable border normal, resize set 1000 700, move position center
 for_window [instance="crx_gaedmjdfmmahhbjefcbgaolhhanlaolb"] floating enable
 for_window [class="Mysql-workbench-bin" title="Connect to Database"] floating enable, resize set 1500 800, move position center
 for_window [class="VirtualBox" title="Select a virtual machine file"] floating enable, resize set 1200 600, move position center
@@ -253,6 +252,6 @@ exec --no-startup-id udiskie --tray &
 # share xdg-open socket with docker containers
 exec --no-startup-id xdg-open-server &
 # bluetooth
-exec --no-startup-id blueberry-tray &
-# wicd systray icon
+exec --no-startup-id blueman-tray &
+# network-manager systray icon
 exec --no-startup-id nm-applet &
