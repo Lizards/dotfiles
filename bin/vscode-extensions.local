@@ -1,0 +1,27 @@
+#!/bin/sh
+# Generate with: code --list-extensions | xargs -L 1 echo code --install-extension
+
+code --install-extension bceskavich.theme-dracula-at-night
+code --install-extension dracula-theme.theme-dracula
+code --install-extension eamodio.gitlens
+code --install-extension grapecity.gc-excelviewer
+code --install-extension hashicorp.terraform
+code --install-extension lkrms.inifmt
+code --install-extension mafut.vsnotes-todo
+code --install-extension ms-azuretools.vscode-docker
+code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
+code --install-extension ms-python.black-formatter
+code --install-extension ms-python.debugpy
+code --install-extension ms-python.isort
+code --install-extension ms-python.pylint
+code --install-extension ms-python.python
+code --install-extension ms-vscode.theme-tomorrowkit
+code --install-extension ms-vscode.vscode-typescript-tslint-plugin
+code --install-extension msjsdiag.debugger-for-chrome
+code --install-extension njpwerner.autodocstring
+code --install-extension redhat.vscode-commons
+code --install-extension redhat.vscode-yaml
+code --install-extension richie5um2.vscode-sort-json
+code --install-extension samuelcolvin.jinjahtml
+code --install-extension sysoev.language-stylus
+code --install-extension zxh404.vscode-proto3
