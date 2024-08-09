@@ -51,6 +51,15 @@ dotdirs: ## symlinks subdirectories and files in ~/.config to this location
 			rm -rf "$${target_dest}"; \
 			ln -sfn "$${target}" "$${target_dest}"; \
 		done;
+	# Dropbox fix: https://wiki.archlinux.org/title/Dropbox#Prevent_automatic_updates
+	if [ -d "$(DEST)/.dropbox-dist/" ]; then \
+		dropbox_stat="$$(stat -c "%A" $(DEST)/.dropbox-dist/)"; \
+		if [[ "$${dropbox_stat}" != "d---------" ]]; then \
+			rm -rf $(DEST)/.dropbox-dist; \
+		fi; \
+	fi
+	install -dm0 $(DEST)/.dropbox-dist
+
 
 .PHONY: etc
 etc: ## Installs /etc files
