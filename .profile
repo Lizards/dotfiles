@@ -3,8 +3,8 @@
 export VISUAL="/bin/vim"
 export EDITOR="/bin/vi -e"
 export SYSTEMD_EDITOR="${VISUAL}"
-export INTERNAL_DISPLAY="eDP-1"
-export EXTERNAL_DISPLAY="HDMI-1"
+export INTERNAL_DISPLAY="eDP1"
+export EXTERNAL_DISPLAY="HDMI1"
 
 export HISTSIZE=500000
 export HISTFILESIZE=$HISTSIZE
