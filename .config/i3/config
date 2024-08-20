@@ -252,6 +252,6 @@ exec --no-startup-id udiskie --tray &
 # share xdg-open socket with docker containers
 exec --no-startup-id xdg-open-server &
 # bluetooth
-exec --no-startup-id blueman-tray &
+exec --no-startup-id blueman-applet &
 # network-manager systray icon
 exec --no-startup-id nm-applet &
