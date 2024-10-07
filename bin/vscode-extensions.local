@@ -16,8 +16,6 @@ code --install-extension ms-python.isort
 code --install-extension ms-python.pylint
 code --install-extension ms-python.python
 code --install-extension ms-vscode.theme-tomorrowkit
-code --install-extension ms-vscode.vscode-typescript-tslint-plugin
-code --install-extension msjsdiag.debugger-for-chrome
 code --install-extension njpwerner.autodocstring
 code --install-extension redhat.vscode-commons
 code --install-extension redhat.vscode-yaml
