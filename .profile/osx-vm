@@ -1,0 +1,12 @@
+#!/bin/bash
+
+. ${HOME}/dotfiles/.profile/.profile
+
+export INTERNAL_DISPLAY="Virtual-1"
+export EXTERNAL_DISPLAY="Virtual-2"
+
+export POLYBAR_BARS="vm"
+export POLYBAR_ETH_INTERFACE="ens160"
+export POLYBAR_MONITOR_LEFT="${INTERNAL_DISPLAY}"
+export POLYBAR_MONITOR_RIGHT="${EXTERNAL_DISPLAY}"
+

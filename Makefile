@@ -1,19 +1,23 @@
 DEST    = $(HOME)
+HOSTNAME := $(shell uname -n)
 
 .PHONY: all
 all: bin dotfiles dotdirs etc usr root ## Installs everything
 
 .PHONY: bin
 bin: ## symlinks everything in bin/ in /usr/local/bin
-	for file in $(shell find $(CURDIR)/bin -type f -not -name ".*"); do \
+	for file in $(shell find $(CURDIR)/bin -type f -not -name ".*" -not name "xrandr.*"); do \
 		f=$$(basename $$file); \
 		sudo ln -sf $$file /usr/local/bin/$$f; \
-	done
+	done;
+	if [ -e "$(CURDIR)/bin/xrandr.$(HOSTNAME)" ]; then \
+		sudo ln -sf $(CURDIR)/bin/xrandr.$(HOSTNAME) /usr/local/bin/xrandr.local; \
+	fi;
 
 .PHONY: dotfiles
 dotfiles: ## symlinks .dotfiles in home directory to this location
-	# .dotfiles first, excluding git stuff and those found in .config/ and submodules/
-	for file in $(shell find $(CURDIR) -type f -name ".*" -not -path "*/.config/*" -not -path "*/root/*" -not -path "*/submodules/*" -not -name ".git*" -not -name "*.swp"); do \
+	# .dotfiles first, excluding git stuff and those found in .profile, .config/, and submodules/
+	for file in $(shell find $(CURDIR) -type f -name ".*" -not -path "*/.profile/*" -not -path "*/.config/*" -not -path "*/root/*" -not -path "*/submodules/*" -not -name ".git*" -not -name "*.swp"); do \
 		f=$$(basename $$file); \
 		ln -sfn $$file $(DEST)/$$f; \
 	done;
@@ -31,6 +35,11 @@ dotfiles: ## symlinks .dotfiles in home directory to this location
 	ln -sfn $(CURDIR)/.vim/colors $(DEST)/.vim/colors
 	# .Xresources.d overrides (included by .Xresources)
 	ln -sfn $(CURDIR)/.Xresources.d $(DEST)/.Xresources.d
+	# .profile
+	ln -sfn $(CURDIR)/.profile/.profile $(DEST)/.profile
+	if [ -e "$(CURDIR)/.profile/$(HOSTNAME)" ]; then \
+		ln -sf $(CURDIR)/.profile/$(HOSTNAME) $(DEST)/.profile; \
+	fi;
 
 .PHONY: dotdirs
 dotdirs: ## symlinks subdirectories and files in ~/.config to this location
