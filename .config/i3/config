@@ -255,3 +255,5 @@ exec --no-startup-id xdg-open-server &
 exec --no-startup-id blueman-applet &
 # network-manager systray icon
 exec --no-startup-id nm-applet &
+# clipboard sharing with vmware fusion
+exec --no-startup-id /usr/bin/vmware-user-suid-wrapper &
