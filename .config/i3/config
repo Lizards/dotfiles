@@ -175,6 +175,7 @@ set $workspace10 "10"
 assign [class="Chromium"] $workspace1
 assign [class="Signal"] $workspace3
 assign [class="code-oss"] $workspace2
+assign [class="Code"] $workspace2
 assign [class="Slack"] $workspace3
 assign [class="Mysql-workbench"] $workspace8
 assign [class="VirtualBox"] $workspace10
