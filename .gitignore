@@ -1,6 +1,6 @@
 *.diff
 .private_aliases
-.config/Code - OSS
+.config/Code
 .config/gtk-3.0/servers
 .config/gtk-3.0/bookmarks
 *.code-workspace
