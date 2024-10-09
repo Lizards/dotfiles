@@ -10,5 +10,6 @@ pb.primary:         S_bryellow
 pb.secondary:       S_yellow
 pb.alert:           S_brred
 pb.warning:         S_yellow
+pb.soft-warning:    S_brmagenta
 pb.warm:            S_magenta
 pb.cool:            S_green

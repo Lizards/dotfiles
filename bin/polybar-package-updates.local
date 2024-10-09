@@ -1,0 +1,19 @@
+#!/bin/bash
+
+function main() {
+    local aur_updates
+    aur_updates=$(aur repo -u -d custom | wc -l)
+    local arch_updates
+    arch_updates=$(checkupdates | wc -l)
+    if [ "${arch_updates}" != "0" ]; then
+        echo -n "${arch_updates}"
+    fi
+    if [ "${aur_updates}" != "0" ]; then
+        if [ "${arch_updates}" != "0" ]; then
+            echo -n " | "
+        fi
+        echo -n "AUR: ${aur_updates}"
+    fi
+}
+
+main
