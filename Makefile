@@ -6,7 +6,7 @@ all: bin dotfiles dotdirs etc usr root ## Installs everything
 
 .PHONY: bin
 bin: ## symlinks everything in bin/ in /usr/local/bin
-	for file in $(shell find $(CURDIR)/bin -type f -not -name ".*" -not name "xrandr.*"); do \
+	for file in $(shell find $(CURDIR)/bin -type f -not -name ".*" -not -name "xrandr.*"); do \
 		f=$$(basename $$file); \
 		sudo ln -sf $$file /usr/local/bin/$$f; \
 	done;
