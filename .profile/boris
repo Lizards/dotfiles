@@ -1,0 +1,9 @@
+#!/bin/bash
+
+. ${HOME}/dotfiles/.profile/.profile
+
+export INTERNAL_DISPLAY="eDP1"
+export EXTERNAL_DISPLAY="HDMI1"
+export POLYBAR_MONITOR_LEFT="${INTERNAL_DISPLAY}"
+export POLYBAR_MONITOR_RIGHT="${EXTERNAL_DISPLAY}"
+
