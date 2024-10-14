@@ -14,6 +14,9 @@ function main() {
         fi
         echo -n "AUR: ${aur_updates}"
     fi
+    if [ "${arch_updates}" == "0" ] && [ "${aur_updates}" == "0" ]; then
+        echo ""
+    fi
 }
 
 main
